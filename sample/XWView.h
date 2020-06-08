@@ -318,16 +318,7 @@ public:
 		{
 			CGRect cgrc(rc.left, rc.top, rc.Width(), rc.Height());
 			CGContext ctx(dc, dcMem, dcCraft, cgrc);
-			//_panel->display(&ctx);
 			_rootLayer->display(&ctx);
-
-			/**
-			_testLayer->display(&ctx);
-			_normalLayer->display(&ctx);
-			_borderLayer->display(&ctx);
-			_rectArcAnimaLayer->display(&ctx);
-			_blogsLayer->display(&ctx);
-			*/
 		}
 
 		//TODO: Add your drawing code here
