@@ -23,7 +23,7 @@ SOFTWARE.
 
 #include "NSObject.h"
 
-class NSArray : public NSObject
+class NS_EXTERN NSArray : public NSObject
 {
 public:
 	virtual ~NSArray();

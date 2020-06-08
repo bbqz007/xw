@@ -18,27 +18,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef _Z_CATestLayer_H_
-#define _Z_CATestLayer_H_
+#ifndef _Z_CATipsPanelLayer_H_
+#define _Z_CATipsPanelLayer_H_
 
-#include "CALayer.h"
-class CATestLayer : public CALayer
+#include "CARootLayer.h"
+#include "CATextLayer.h"
+
+class CATipsPanelLayer : public CARootLayer
 {
 public:
-	virtual ~CATestLayer() {}
-	CATestLayer();
-public:
-	typedef CATestLayer this_type;
-	typedef CALayer base;
-protected:
+	virtual ~CATipsPanelLayer();
+	CATipsPanelLayer();
+	virtual void drawInContext(CGContext* ctx);
+private:
 	virtual void applyAnimating();
-	CGRect _frame_start;
-	CGRect _frame_end;
-	CGAffineTransform _transform_anime[4][2];
-	CGPoint _translate0[2];
-	CGFloat _rotate1[2];
-	CGPoint _scale2[2];
-	CGFloat _duration;
+public:
+	typedef CATipsPanelLayer this_type;
+	typedef CARootLayer base;
+private:
+	CATextLayer* _textLayer1;
+	CATextLayer* _textLayer2;
+	CATextLayer* _textLayer3;
+	CATextLayer* _textLayer4;
 };
 
-#endif
+#endif // _Z_CATipsPanelLayer_H_

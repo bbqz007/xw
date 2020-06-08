@@ -31,17 +31,18 @@ SOFTWARE.
 #include <windows.h>
 #include <deque>
 #include "class_id.h"
+#include "XWExport.h"
 
 struct obj_class;
 
 class NSObject
 {
 public:
-	virtual ~NSObject();
-	NSObject* retain();
-	void release();
-	NSObject* autorelease();
-	operator bool();
+	NS_EXTERN virtual ~NSObject();
+	NS_EXTERN NSObject* retain();
+	NS_EXTERN void release();
+	NS_EXTERN NSObject* autorelease();
+	NS_EXTERN operator bool();
 public:
 	typedef NSObject this_type;
 	typedef this_type base;
@@ -53,7 +54,7 @@ public:
 	template<typename _Ty, typename _Arg0, typename _Arg1>
 	static _Ty* allocT2(_Arg0 a0, _Arg1 a1) { /*return new typename _Ty(a0, a1);*/NSOBJECTALLOCATOR2(_Ty, a0, a1); }
 protected:
-	NSObject();
+	NS_EXTERN NSObject();
 protected:
 	LONG _retainCount;
 #ifndef _WIN64
@@ -61,21 +62,24 @@ protected:
 #endif
 	obj_class* obj_class;
 	friend struct obj_class;
+	NS_EXTERN void operator delete(void*);
 private:
-	void* operator new(size_t);
-	void operator delete(void*);
-	void drill();
+	NS_EXTERN void* operator new(size_t);
+	NS_EXTERN void drill();
 };
 
-extern NSObject* nilObject;
+//#define nilObject getNilObject()
+//NS_EXTERN NSObject* getNilObject();
+extern "C" NS_EXTERN NSObject* nilObject;
 
 inline NSObject::operator bool()
 {
 	return this != nilObject;
 }
 
-void __initSubNSObjects(NSObject*** objs, size_t count);
-void __releaseSubNSObjects(NSObject** objs, size_t count);
+NS_EXTERN void __initSubNSObjects(NSObject*** objs, size_t count);
+//void __initSubNSObjects(NSObject*& objs[], size_t count);		// error C2234 引用数组是非法的
+NS_EXTERN void __releaseSubNSObjects(NSObject** objs, size_t count);
 
 #include "ZXOC2CPP.h"
 

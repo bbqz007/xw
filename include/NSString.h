@@ -39,7 +39,7 @@ enum {
 
 typedef NSUInteger NSStringEncoding;
 
-class NSString : public NSObject
+class NS_EXTERN NSString : public NSObject
 {
 public:
 	typedef NSString this_type;

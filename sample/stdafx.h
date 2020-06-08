@@ -1,6 +1,3 @@
-#ifndef _Z_NSObjectRuntime_H_
-#define _Z_NSObjectRuntime_H_
-
 /**
 MIT License
 Copyright (c) 2015 bbqz007 <https://github.com/bbqz007, http://www.cnblogs.com/bbqzsl>
@@ -21,16 +18,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/****************************************************\
-** author:
-**		created by zsl (dennis. China)
-**		at 2015.12.26
-\****************************************************/
+// stdafx.h : include file for standard system include files,
+//  or project specific include files that are used frequently, but
+//  are changed infrequently
+//
 
-typedef int NSInteger;
-typedef unsigned int NSUInteger;
-typedef unsigned char unichar;
+#pragma once
 
-#define NS_INLINE inline
+// Change these values to use different versions
+//#define WINVER		0x0500
+//#define _WIN32_WINNT	0x0501
+//#define _WIN32_IE	0x0501
+//#define _RICHEDIT_VER	0x0500
 
+#include <atlbase.h>
+#include <atlapp.h>
+
+extern CAppModule _Module;
+
+#include <atlwin.h>
+#include <atlmisc.h>
+#include <gdiplus.h>
+#include <math.h>
+#include <atlstr.h>
+
+extern const LPBITMAPINFO ARGBBWBITMAPINFO;
+
+#pragma comment(lib, "gdiplus")
+
+// cl /Zi
+// link /DEBUG /pdb:path
+
+#ifdef _STLP_PLATFORM
+#ifdef _DEBUG
+#pragma comment(lib, "stlportd_static")
+#else
+#pragma comment(lib, "stlport_static")
+#endif
 #endif

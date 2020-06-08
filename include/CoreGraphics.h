@@ -22,11 +22,13 @@ SOFTWARE.
 #define _Z_CoreGraphics_H_
 
 #include <Gdiplus.h>
+#include "XWExport.h"
 
-#define CG_EXTERN
+#define CG_EXTERN XWEXPORT
 #define CG_AVAILABLE_STARTING(mac, ios)
 
 class CGContext;
+extern "C" CG_EXTERN ::Gdiplus::ARGB kClearColor;
 
 #ifndef _CGFloat_
 #define _CGFloat_

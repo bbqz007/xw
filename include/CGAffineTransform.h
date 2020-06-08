@@ -35,75 +35,77 @@ struct CGAffineTransform {
   {a = m11, b = m12, c = m21, d = m22, tx = dx, ty = dy;}
 };
 
-CGAffineTransform CGAffineTransformMake(CGFloat a, CGFloat b,
+CG_EXTERN CGAffineTransform CGAffineTransformMake(CGFloat a, CGFloat b,
   CGFloat c, CGFloat d, CGFloat tx, CGFloat ty);
 
 /* Return a transform which translates by `(tx, ty)':
      t' = [ 1 0 0 1 tx ty ] */
 
-CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,
+CG_EXTERN CGAffineTransform CGAffineTransformMakeTranslation(CGFloat tx,
   CGFloat ty);
 
 /* Return a transform which scales by `(sx, sy)':
      t' = [ sx 0 0 sy 0 0 ] */
 
-CGAffineTransform CGAffineTransformMakeScale(CGFloat sx, CGFloat sy);
+CG_EXTERN CGAffineTransform CGAffineTransformMakeScale(CGFloat sx, CGFloat sy);
 
 /* Return a transform which rotates by `angle' radians:
      t' = [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] */
 
-CGAffineTransform CGAffineTransformMakeRotation(CGFloat angle);
+CG_EXTERN CGAffineTransform CGAffineTransformMakeRotation(CGFloat angle);
 
 /* Return true if `t1' and `t2' are equal, false otherwise. */
 
-bool CGAffineTransformIsIdentity(CGAffineTransform t);	// no impl
+CG_EXTERN bool CGAffineTransformIsIdentity(CGAffineTransform t);	// no impl
 
 /* Translate `t' by `(tx, ty)' and return the result:
      t' = [ 1 0 0 1 tx ty ] * t */
 
-CGAffineTransform CGAffineTransformTranslate(CGAffineTransform t,
+CG_EXTERN CGAffineTransform CGAffineTransformTranslate(CGAffineTransform t,
   CGFloat tx, CGFloat ty);
 
 /* Scale `t' by `(sx, sy)' and return the result:
      t' = [ sx 0 0 sy 0 0 ] * t */
 
-CGAffineTransform CGAffineTransformScale(CGAffineTransform t,
+CG_EXTERN CGAffineTransform CGAffineTransformScale(CGAffineTransform t,
   CGFloat sx, CGFloat sy);
 
 /* Rotate `t' by `angle' radians and return the result:
      t' =  [ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ] * t */
 
-CGAffineTransform CGAffineTransformRotate(CGAffineTransform t,
+CG_EXTERN CGAffineTransform CGAffineTransformRotate(CGAffineTransform t,
   CGFloat angle);
 
 /* Invert `t' and return the result. If `t' has zero determinant, then `t'
    is returned unchanged. */
 
-CGAffineTransform CGAffineTransformInvert(CGAffineTransform t);
+CG_EXTERN CGAffineTransform CGAffineTransformInvert(CGAffineTransform t);
 
 /* Concatenate `t2' to `t1' and return the result:
      t' = t1 * t2 */
 
-CGAffineTransform CGAffineTransformConcat(CGAffineTransform t1,
+CG_EXTERN CGAffineTransform CGAffineTransformConcat(CGAffineTransform t1,
   CGAffineTransform t2);
 
 /* Return true if `t1' and `t2' are equal, false otherwise. */
 
-bool CGAffineTransformEqualToTransform(CGAffineTransform t1,
+CG_EXTERN bool CGAffineTransformEqualToTransform(CGAffineTransform t1,
   CGAffineTransform t2);
 
 /* Transform `point' by `t' and return the result:
      p' = p * t
    where p = [ x y 1 ]. */
 
-CGPoint CGPointApplyAffineTransform(CGPoint point,
+CG_EXTERN CGPoint CGPointApplyAffineTransform(CGPoint point,
   CGAffineTransform t);
 
 /* Transform `size' by `t' and return the result:
      s' = s * t
    where s = [ width height 0 ]. */
 
-CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t);
+CG_EXTERN CGSize CGSizeApplyAffineTransform(CGSize size, CGAffineTransform t);
 
-BOOL operator != (const CGAffineTransform& l, const CGAffineTransform& r);
+CG_EXTERN BOOL operator != (const CGAffineTransform& l, const CGAffineTransform& r);
+
+CG_EXTERN void GCMatrixContextClear();
 #endif

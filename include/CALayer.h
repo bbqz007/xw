@@ -31,21 +31,23 @@ SOFTWARE.
 class CALayer : public NSObject
 {
 public:
-	virtual ~CALayer();
-	CALayer();
+	CA_EXTERN virtual ~CALayer();
+	CA_EXTERN CALayer();
 
-	void setNeedslayout();
-	BOOL needsLayout();
-	void layoutIfNeeded();
-	virtual void layoutSublayers();
+	CA_EXTERN void setNeedslayout();
+	CA_EXTERN BOOL needsLayout();
+	CA_EXTERN void layoutIfNeeded();
+	CA_EXTERN virtual void layoutSublayers();
 
-	void display(CGContext* ctx);
-	virtual void drawInContext(CGContext* ctx);
-	void renderInContext(CGContext* ctx);
+	CA_EXTERN void display(CGContext* ctx);
+	CA_EXTERN virtual void drawInContext(CGContext* ctx);
+	CA_EXTERN void renderInContext(CGContext* ctx);
 
-	void addSublayer(CALayer* layer);
+	CA_EXTERN void addSublayer(CALayer* layer);
+protected:
+	CA_EXTERN CGPathRef makeCornerRadiusPath();
 private:
-	virtual void applyAnimating();
+	CA_EXTERN virtual void applyAnimating();
 #ifdef TEST_WIN32OC2
 	_0_property(int, i)
 	_0_property(int*, j)
@@ -59,11 +61,11 @@ protected:
 	_0_property_setter(setZPosition,				CGFloat, zPosition);
 	//_0_property_pri_pwi_pti(public:, transform, ;, public:, setTransform, ;, protected:,		CGAffineTransform, transform);
 	_0_property_setter(setTransform,				CGAffineTransform, transform);
-	_0_property_getset(isHidden,setHidden,			BOOL, hidden);
+	_0_property_BOOL(isHidden,setHidden,			/*BOOL,*/	hidden);
 	_0_property_assign2(setSuperLayer,				CALayer*, superLayer);
 	_0_property_retain2(setSublayers,				NSArray*, sublayers);
 	_0_property_retain2(setMask,					CALayer*, mask);			// no impl
-	_0_property_getset(isMaskToBounds, setMaskToBounds, BOOL, maskToBounds);		// no impl
+	_0_property_BOOL(isMaskToBounds, setMaskToBounds,/*BOOL,*/	maskToBounds);		// no impl
 #ifdef CALAYER_IMPL_CONTENTS
 	NSObject* _contents;	// no impl
 	CGRect _contentRect;
@@ -75,19 +77,22 @@ protected:
 	_0_property_getter(isNeedsDisplayOnBoundsChange, BOOL, needsDisplayOnBoundsChange);
 	_0_property_getter(isDrawsAsynchronously,		BOOL, drawsAsynchronously);	// no impl
 	_0_property(CGColor, backgroundColor);
-	_0_property(CGColor, cornerRadius);
-	_0_property(CGFloat, borderWidth);
+	_0_property_CGFloat(, cornerRadius);
+	_0_property_CGFloat(, borderWidth);
 	_0_property(CGColor, borderColor);
-	_0_property(CGFloat, opacity);
+	_0_property_CGFloat(, opacity);
 	_0_property_setter(isAllowsGroupOpacity,		BOOL, allowsGroupOpacity);
 	_0_property_retain2(setFilters,					NSArray*, filters);
 	_0_property_retain2(setBackgroundFilters,		NSArray*, backgroundFilters);
 	_0_property_setter(isShouldRasterize,			BOOL, shouldRasterize);
-	_0_property(CGFloat, rasterizationScale);
+	_0_property_CGFloat(, rasterizationScale);
 	_0_property(CGColor, shadowColor);
-	_0_property(CGFloat, shadowOpacity);
-	_0_property(CGFloat, shadowRadius);
+	_0_property_CGFloat(, shadowOpacity);
+	_0_property_CGFloat(, shadowRadius);
 	_0_property_pri_pwi_pti(public:, shadowPath, ;, public:, setShadowPath, ;, protected:,		CGPath, shadowPath);
+
+	_0_property_BOOL(isSmoothBorder,setSmoothBorder,			/*BOOL,*/	smoothBorder);
+	_0_property_CGFloat(, smoothBorderWidth);
 };
 
 # pragma warning(pop)

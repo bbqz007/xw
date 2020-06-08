@@ -56,7 +56,7 @@ struct CGContextState
 };
 
 class CALayer;
-class CGContext : protected CGContextState
+class CG_EXTERN CGContext : protected CGContextState
 {
 public:
 	~CGContext();
@@ -65,6 +65,8 @@ public:
 	void enterLayer(CALayer* layer);
 	void leaveLayer();
 	void* getDcMem() {return _hdcMem;}
+	void* getBackingBackgrnd() {return _backingBackground;}
+	::Gdiplus::Bitmap* getBackingBackgrndImage();
 	void applyGraphics(::Gdiplus::Graphics& g);
 	operator ::Gdiplus::Graphics& ();
 	operator ::Gdiplus::Pen& ();
@@ -76,6 +78,11 @@ public:
 	void setTextColor(CGColor&);
 	void setFillColor(CGColor&);
 	void setStrokeColor(CGColor&);
+	void setBackingBackground(void* backing);
+
+	::Gdiplus::Graphics& underlying();
+	int underlyingSave();
+	void underlyingRestore(int);
 private:
 	CGContext();
 	CGContext(const CGContext&);
@@ -91,6 +98,8 @@ protected:
 	::Gdiplus::SolidBrush _brush;	// fill
 	::Gdiplus::StringFormat _textFormat; //
 	::Gdiplus::GraphicsPath _path;
+	void* _backingBackground;
+	::Gdiplus::Bitmap* _backingBackgrndImage;
 };
 
 #endif

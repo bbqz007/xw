@@ -18,44 +18,37 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef _Z_CAAnimation_H_
-#define _Z_CAAnimation_H_
+// aboutdlg.h : interface of the CAboutDlg class
+//
+/////////////////////////////////////////////////////////////////////////////
 
-#include "CALayer.h"
+#pragma once
 
-class CAAnimation : public NSObject
+class CAboutDlg : public CDialogImpl<CAboutDlg>
 {
 public:
-	virtual ~CAAnimation();
-	void animeWithLayer(CALayer*);
-	static CAAnimation* beginAnimating(CALayer* animeLayer, CGFloat dura);
-	void setFrame(const CGRect& frame);
-	void translate(CGFloat tx, CGFloat ty);
-	void scale(CGFloat sx, CGFloat sy);
-	void rotate(CGFloat angle);
-	void commit();
-	ULONG_PTR hash();
-	BOOL isExpired();
-	BOOL isActivate();
-protected:
-	friend class NSObject;
-	CAAnimation(CALayer* animeLayer, CGFloat dura);
-private:
-	CAAnimation();
-protected:
-	BOOL _commited;
-	CGRect _beginFrame;
-	CGFloat _beginAlpha;
-	CGAffineTransform _beginTransform;
-	long _beginTime;
-	long _duration;
-	CGRect _endFrame;
-	NSArray* _endTransforms;
-	CALayer* _animeLayer;
-};
+	enum { IDD = IDD_ABOUTBOX };
 
-CAAnimation* queryAnimating(CALayer* animeLayer);
-void removeAnimating(CAAnimation* anime);
-void buildActivateAnimations();
-void commitAnimating(CAAnimation* anime);
-#endif
+	BEGIN_MSG_MAP(CAboutDlg)
+		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
+		COMMAND_ID_HANDLER(IDOK, OnCloseCmd)
+		COMMAND_ID_HANDLER(IDCANCEL, OnCloseCmd)
+	END_MSG_MAP()
+
+// Handler prototypes (uncomment arguments if needed):
+//	LRESULT MessageHandler(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+//	LRESULT CommandHandler(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+//	LRESULT NotifyHandler(int /*idCtrl*/, LPNMHDR /*pnmh*/, BOOL& /*bHandled*/)
+
+	LRESULT OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+	{
+		CenterWindow(GetParent());
+		return TRUE;
+	}
+
+	LRESULT OnCloseCmd(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+	{
+		EndDialog(wID);
+		return 0;
+	}
+};

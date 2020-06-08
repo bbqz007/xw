@@ -18,25 +18,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef _Z_NSAutoreleasePool_H_
-#define _Z_NSAutoreleasePool_H_
+#ifndef _Z_CARootLayer_H_
+#define _Z_CARootLayer_H_
 
-#include "NSObject.h"
+#include "CALayer.h"
 
-class NSAutoreleasePool
+class CARootLayer : public CALayer
 {
 public:
-	~NSAutoreleasePool();
-	NSAutoreleasePool();
+	virtual ~CARootLayer();
+	CARootLayer();
+	virtual void drawInContext(CGContext* ctx);
+public:
+	typedef CARootLayer this_type;
+	typedef CALayer base;
 };
 
-void NSAutoreleasePoolAutoreleaseObject(NSObject* object);
-BOOL NSAutoreleasePoolAttachCurrentThread();
-void NSAutoreleasePoolDettachCurrentThread();
-void NSAutoreleasePoolDrain();
-
-#define _0_autoreleasepool	_0_autoreleasepool_(__LINE__)
-#define _0_autoreleasepool_(n) { NSAutoreleasePool _nsautoreleasepool_##n;
-#define _1_autoreleasepool }
-
-#endif
+#endif // _Z_CARootLayer_H_

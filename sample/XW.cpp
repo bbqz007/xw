@@ -1,23 +1,3 @@
-/**
-MIT License
-Copyright (c) 2015 bbqz007 <https://github.com/bbqz007, http://www.cnblogs.com/bbqzsl>
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-
 // XW.cpp : main source file for XW.exe
 //
 
@@ -30,13 +10,12 @@ SOFTWARE.
 #include "resource.h"
 
 #include "XWView.h"
+#include "XWViewFoundation.h"
 #include "aboutdlg.h"
 #include "MainFrm.h"
 #include "NSAutoreleasePool.h"
 
 CAppModule _Module;
-
-extern void GCMatrixContextClear();
 
 // Z@20151211
 struct XWNSAotureleasePoolIdleHandler : public CIdleHandler
@@ -75,7 +54,22 @@ int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 	_0_autoreleasepool {
 
 	CXWView wndXW;
-	wndXW.Create(0, ATL::CWindow::rcDefault, NULL, WS_VISIBLE | WS_CAPTION | WS_SYSMENU, 0);
+#if Ver_old
+	wndXW.Create(0, ATL::CWindow::rcDefault, NULL, WS_CAPTION | WS_SYSMENU, WS_EX_LAYERED | WS_EX_TOPMOST);
+#else
+	CXWFoundationView foundationXW;
+	foundationXW.Create(0, ATL::CWindow::rcDefault, NULL, WS_CAPTION | WS_SYSMENU, WS_EX_LAYERED);// | WS_EX_TOPMOST);
+
+	CRect rc;
+    GetWindowRect(foundationXW, &rc);
+	//rc.left = 0;		// not a child window
+	//rc.right = 0;		// not a child winodw
+	wndXW.Create(foundationXW, rc, NULL, WS_POPUP, WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_LAYERED);// | WS_EX_TOPMOST);
+	foundationXW.SetLayerEngineWindow(wndXW);
+
+	foundationXW.ShowWindow(nCmdShow);
+#endif
+
 	wndXW.ShowWindow(nCmdShow);
 
 	// @autoreleasepool {

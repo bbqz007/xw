@@ -18,39 +18,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/*********************************\
-** author:
-**		created by zsl (dennis. China)
-**		at 2015.12.14
-**
-\*********************************/
-
-#ifndef _Z_NSObjectCoreRuntime_H_
-#define _Z_NSObjectCoreRuntime_H_
-
-#define bit_available 1
-#define bit_isweak 2
-#define bit_canweak 3
-
-struct obj_class
-{
-	ULONG_PTR class_id;
-	LONG refCount;
-	void* obj;
-	LONG weakCount;
-	LONG flags;
-	void deleteObject(void* obj);
-	obj_class* objOfObject(void* obj);
-};
-
-void obj_class_init(obj_class*);
-void* obj_class_get();
-void obj_class_put(obj_class*);
-void* obj_class_retain(obj_class*);
-void* obj_class_weak_retain(obj_class*);
-void* obj_class_release(obj_class*);
-void obj_class_weak_release(obj_class*);
-void* obj_class_weak_lock(obj_class*);
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by XW.RC
+//
 
 
+#define IDD_ABOUTBOX				100
+#define IDR_MAINFRAME				128
+//#define IDR_XWTYPE	129
+
+// Next default values for new objects
+//
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE	201
+#define _APS_NEXT_CONTROL_VALUE		1000
+#define _APS_NEXT_SYMED_VALUE		101
+#define _APS_NEXT_COMMAND_VALUE		32775
+#endif
 #endif

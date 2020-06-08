@@ -29,8 +29,10 @@ SOFTWARE.
 **
 \****************************************************/
 
-void class_id_build(ULONG_PTR* id, ULONG_PTR base_id);
-void class_id_bind(void* obj, ULONG_PTR class_id);
+#include "XWExport.h"
+
+NS_EXTERN void class_id_build(ULONG_PTR* id, ULONG_PTR base_id);
+NS_EXTERN void class_id_bind(void* obj, ULONG_PTR class_id);
 
 //
 //
@@ -61,7 +63,7 @@ ULONG_PTR class_id_get()
 	return __xx_class_id.id;
 }
 
-BOOL obj_isKindOfClass(void* obj, ULONG_PTR class_id);
+NS_EXTERN BOOL obj_isKindOfClass(void* obj, ULONG_PTR class_id);
 
 template<typename _Ty>
 BOOL isKindOfClass(NSObject* obj)

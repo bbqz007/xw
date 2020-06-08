@@ -47,7 +47,7 @@ SOFTWARE.
 
 #define _0_property_setter(setter, T, t)	\
 	public:	\
-	const T& t() { return (const T)_##t; }	\
+	const T& t() { return (const T&)_##t; }	\
 	void setter(T& const t1) { _##t = (T const)t1; }	\
 	protected:	\
 	T _##t;
@@ -59,17 +59,31 @@ SOFTWARE.
 	protected:	\
 	T _##t;
 
-#define _0_property_BOOL(getter, T, t)	\
+#define _0_property_BOOL(getter, setter, t)	\
 	public:	\
-	T getter() { return _##t; }	\
-	void set_##t(T& const t1) { _##t = (T)t1; }	\
+	BOOL getter() { return _##t; }	\
+	void setter(BOOL const t1) { _##t = (BOOL)t1; }	\
+	protected:	\
+	BOOL _##t;
+
+#define _0_property_BOOL_setter01(setter, t)	\
+	public:	\
+	const BOOL& t() { return _##t; }	\
+	void setter(BOOL const t1);	\
 	protected:	\
 	T _##t;
+
+#define _0_property_CGFloat(T, t)	\
+	public:	\
+	CGFloat t() { return _##t; }	\
+	void set_##t(CGFloat const t1) { _##t = (CGFloat)t1; }	\
+	protected:	\
+	CGFloat _##t;
 
 #define _0_property_setter01(setter, T, t)	\
 	public:	\
 	const T& t() { return _##t; }	\
-	void setter(T& const t1);	\
+	CA_EXTERN void setter(T& const t1);	\
 	protected:	\
 	T _##t;
 
@@ -79,17 +93,27 @@ getprop	type getter##() getimpl	\
 setprop	void setter##(type& t1) setimpl	\
 mbrprop	type _##member;
 
+// implement getter and setter yourself
+
 #define _0_property_2(T, t)		\
 	_0_property_pri_pwi_pti(public:, t, ;, public:, set_##t, ;, protected:, T, t)
+
+// full specify version with six arguments
 
 #define _0_property_ri_wi_ti(getter, getimpl, setter, setimpl, type, member)	\
 	_0_property_pri_pwi_pti(public:, getter, getimpl, public:, setter, setimpl, protected:, type, member)
 
+// retain property
+
 #define _0_property_retain(T, t) \
 	_0_property_pri_pwi_pti(public:, t, { return (T)_##t->retain()->autorelease(); }, public:, set_##t, { if(_##t != t1) _##t->release(); _##t = (T)t1->retain(); }, protected:, T, t)
 
+// retain property, and you can specify the name of setter
+
 #define _0_property_retain2(setter, T, t) \
 	_0_property_pri_pwi_pti(public:, t, { return (T)_##t->retain()->autorelease(); }, public:, setter, { if(_##t != t1) _##t->release(); _##t = (T)t1->retain(); }, protected:, T, t)
+
+// assign property, and you can specify the name of setter
 
 #define _0_property_assign2(setter, T, t) \
 	_0_property_pri_pwi_pti(public:, t, { return (T)_##t; }, public:, setter, { _##t = (T)t1; }, protected:, T, t)
@@ -114,4 +138,25 @@ mbrprop	type _##member;
 //#define assign_getter(getter) assign,getter,;
 //#define _a_property2_assign(getter, getimpl, setter, setimpl, type, member)	\
 //	_0_property_pri_pwi_pti(public:, getter, getimpl, public:, setter, setimpl, protected:, type, member)
+
+
+
+/**
+* Variadic Macros
+*
+*/
+#define HELPER_INIT_SUB_NSOBJECTS(...) \
+	do { \
+		void* subobjs[] = {__VA_ARGS__};		\
+		::__initSubNSObjects((NSObject***)subobjs, sizeof(subobjs)/sizeof(NSObject*));		\
+	} while (0);
+
+#define HELPER_RELEASE_SUB_NSOBJECTS(...)	\
+	do { \
+		NSObject* subobjs[] = {__VA_ARGS__};	\
+		::__releaseSubNSObjects(subobjs, sizeof(subobjs)/sizeof(NSObject*));	\
+	} while (0);
+
+#define CHK_VALID_NSOBJECT(obj) ((obj) && (obj) != ::nilObject)
+
 #endif
