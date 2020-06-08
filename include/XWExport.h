@@ -21,6 +21,9 @@ SOFTWARE.
 #ifndef _XW_EXPORT__H_
 #define _XW_EXPORT__H_
 
+#ifdef _WIN64
+#error "only support 32-bit version prebuilt dll"
+#endif
 
 #ifdef BUILD_DLL
 #define XWEXPORT __declspec(dllexport)
