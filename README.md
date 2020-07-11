@@ -41,7 +41,7 @@ CGAffineTransform
 3. transform matrix.
 
 ## custom draw CALayer
-1. overwrite the virtual method CALayer::drawInContext()
+1. override the virtual method CALayer::drawInContext()
 
 ## autorelease
 1. scope between _0_autorelease and _1_autorelease
