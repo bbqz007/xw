@@ -14,7 +14,8 @@ in
 cocoa
 frameworks.
 
-# classes
+![img](https://github.com/bbqz007/xw/blob/master/demo/XWQ.demo.gif)
+## classes
 CALayer
 
 CATextLayer
@@ -27,22 +28,22 @@ NSAutoReleasePool
 
 CGAffineTransform
 
-# two way to write animations
+## two way to write animations
 1. use CAAnimation to commit a animation job.
 
 2. implement your own CALayer, overwrite the virtual method CALayer::applyAnimating() to control every frame.
 
-# properties of CALayer for animation
+## properties of CALayer for animation
 1. Frame.
 
 2. opacity.
 
 3. transform matrix.
 
-# custom draw CALayer
+## custom draw CALayer
 1. overwrite the virtual method CALayer::drawInContext()
 
-# autorelease
+## autorelease
 1. scope between _0_autorelease and _1_autorelease
 
 2. NSObjects can use autorelease method.
