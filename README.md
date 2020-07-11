@@ -31,7 +31,7 @@ CGAffineTransform
 ## two way to write animations
 1. use CAAnimation to commit a animation job.
 
-2. implement your own CALayer, overwrite the virtual method CALayer::applyAnimating() to control every frame.
+2. implement your own CALayer, override the virtual method CALayer::applyAnimating() to control every frame.
 
 ## properties of CALayer for animation
 1. Frame.
