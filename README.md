@@ -47,3 +47,6 @@ CGAffineTransform
 1. scope between _0_autorelease and _1_autorelease
 
 2. NSObjects can use autorelease method.
+## other associated demo
+![img](https://github.com/bbqz007/stock-drawing-assistant-tool/blob/master/res/demo1.gif)
+https://github.com/bbqz007/stock-drawing-assistant-tool
