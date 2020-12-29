@@ -53,4 +53,7 @@ CGAffineTransform
 2. NSObjects can use autorelease method.
 ## other associated demo
 ![img](https://github.com/bbqz007/stock-drawing-assistant-tool/blob/master/res/demo1.gif)
+
+[if you are behive a wall, click here]()
+
 https://github.com/bbqz007/stock-drawing-assistant-tool
