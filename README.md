@@ -19,6 +19,7 @@ frameworks.
 photo below is shown for wall-behive.
 
 ![img](https://img2020.cnblogs.com/blog/665551/202012/665551-20201230053200353-279860334.gif)
+[PicInCN](https://img2020.cnblogs.com/blog/665551/202012/665551-20201230053200353-279860334.gif)
 ## classes
 CALayer
 
