@@ -25,6 +25,18 @@ SOFTWARE.
 #include "CoreGraphics.h"
 #include "NSString.h"
 
+enum CAAlignmentMode
+{
+	kCAAlignmentNatural = ::Gdiplus::StringAlignment::StringAlignmentNear,
+	kCAAlignmentLeft = ::Gdiplus::StringAlignment::StringAlignmentNear,
+	kCAAlignmentCenter = ::Gdiplus::StringAlignment::StringAlignmentCenter,
+	kCAAlignmentRight = ::Gdiplus::StringAlignment::StringAlignmentFar,
+	//kCAAlignmentJustified,
+	/// Z@20210702
+	kCAAlignmentVerticalCenter = 0x10,				// combine with one of values above.
+};
+
+
 class CATextLayer : public CALayer
 {
 public:
@@ -56,7 +68,7 @@ public:
 	_0_property_BOOL(isPreferBackingStore,setPreferBackingStore,			/*BOOL,*/	preferBackingStore);
 	_0_property_BOOL(isPreferBackingStoreSharp,setPreferBackingStoreSharp,	/*BOOL,*/	preferBackingStoreSharp);
 protected:
-	virtual void makeBackingStore(CGContext* ctx);
+	CA_EXTERN virtual void makeBackingStore(CGContext* ctx);
 
 protected:
 	::Gdiplus::StringFormatFlags _fmtFlags;

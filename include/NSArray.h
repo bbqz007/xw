@@ -34,8 +34,16 @@ public:
 	NSObject* operator [] (INT32 index);
 	void addObject(NSObject* object);
 	void removeObject(NSObject* object);
+	static NSArray* arrayWithArray(NSArray*);
+	static NSArray* initWithArray(NSArray*);
+#if 0
 private:
 	std::deque<NSObject*> _array;
+#endif
 };
+
+template<>
+NS_EXTERN
+NSArray* NSObject::allocT<NSArray>();
 
 #endif

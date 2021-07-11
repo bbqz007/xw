@@ -75,7 +75,19 @@ protected:
 #endif
 	_0_property_getset(isOpaque, setOpaque,			BOOL, opaque);
 	_0_property_getter(isNeedsDisplayOnBoundsChange, BOOL, needsDisplayOnBoundsChange);
+#if 0 /// compatible 
 	_0_property_getter(isDrawsAsynchronously,		BOOL, drawsAsynchronously);	// no impl
+#else
+	struct {
+		BOOL _drawsAsynchronously : 1;
+		BOOL _needsLayout : 1;
+		BOOL _needsAnimate : 1;
+		BOOL _needsAnimateRoot : 1;
+	} _layerFlags;
+	_0_flag_getter(isDrawsAsynchronously, _layerFlags, drawsAsynchronously);
+	_0_flag_getter(isNeedsAnimate, _layerFlags, needsAnimate);
+	_0_flag_getter(isNeedsAnimateRoot, _layerFlags, needsAnimateRoot);
+#endif
 	_0_property(CGColor, backgroundColor);
 	_0_property_CGFloat(, cornerRadius);
 	_0_property_CGFloat(, borderWidth);
@@ -94,6 +106,8 @@ protected:
 	_0_property_BOOL(isSmoothBorder,setSmoothBorder,			/*BOOL,*/	smoothBorder);
 	_0_property_CGFloat(, smoothBorderWidth);
 };
+
+NS_EXPORT_CLASS_ID(CALayer)
 
 # pragma warning(pop)
 #endif

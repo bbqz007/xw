@@ -27,6 +27,9 @@ SOFTWARE.
 
 #define self (*this)
 
+//// Z@20210711 says
+//// #define _0_property(T, t) __declspec(property(get = t, put = set_##t)£©T _##t;
+
 #define _0_property(T, t)	\
 	public:	\
 	const T& t() { return _##t; }	\
@@ -86,6 +89,18 @@ SOFTWARE.
 	CA_EXTERN void setter(T& const t1);	\
 	protected:	\
 	T _##t;
+
+#define _0_flag_getset(getter, setter, v, t)	\
+	public:	\
+	const BOOL getter() { return v._##t; }	\
+	void setter(const BOOL& const t1) { v._##t = !!t1; }	\
+	protected:	
+
+#define _0_flag_getter(getter, v, t)	\
+	public:	\
+	const BOOL getter() { return v._##t; }	\
+	void set_##t(const BOOL& const t1) { v._##t = !!t1; }	\
+	protected:	
 
 //
 #define _0_property_pri_pwi_pti(getprop, getter, getimpl, setprop, setter, setimpl, mbrprop, type, member)	\

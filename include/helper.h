@@ -23,3 +23,15 @@ SOFTWARE.
 int GetEncoderClsid(const WCHAR* format, CLSID* pCLSID);
 
 void injectDebug();
+
+template<class T>
+void check_static_var_address_in_different_module();
+#define CHECK_STATIC_VARIABLE_ADDRESS_IN_DIFF_MOD(M, T)	\
+template<>	\
+inline  \
+void check_static_var_address_in_different_module<T>()	\
+{	\
+	static int _t;	\
+	char buf[128];	\
+	::OutputDebugStringA((sprintf(buf, "\nmod: [%s], static %s _t locate at %08x\n", #M, #T, &_t), buf));	\
+}

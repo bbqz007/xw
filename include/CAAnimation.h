@@ -23,6 +23,8 @@ SOFTWARE.
 
 #include "CALayer.h"
 
+class CAPrivateRootLayer;
+
 class CA_EXTERN CAAnimation : public NSObject
 {
 public:
@@ -38,6 +40,7 @@ public:
 	ULONG_PTR hash();
 	BOOL isExpired();
 	BOOL isActivate();
+	bool operator < (CAAnimation&);
 protected:
 	friend class NSObject;
 	CAAnimation(CALayer* animeLayer, CGFloat dura);
@@ -54,6 +57,9 @@ protected:
 	CGFloat _endAlpha;
 	NSArray* _endTransforms;
 	CALayer* _animeLayer;
+	friend CA_EXTERN void buildActivateAnimations();
+	friend CA_EXTERN void commitAnimating(CAAnimation* anime);
+	friend class CAPrivateRootLayer;
 };
 
 CA_EXTERN CAAnimation* queryAnimating(CALayer* animeLayer);

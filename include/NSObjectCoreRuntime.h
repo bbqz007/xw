@@ -41,6 +41,7 @@ struct NS_EXTERN obj_class
 	void* obj;
 	LONG weakCount;
 	LONG flags;
+	size_t size;
 	void deleteObject(void* obj);
 	obj_class* objOfObject(void* obj);
 };

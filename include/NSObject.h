@@ -83,9 +83,186 @@ NS_EXTERN void __releaseSubNSObjects(NSObject** objs, size_t count);
 
 #include "ZXOC2CPP.h"
 
+/****************************************************\
+** author:
+**		extended by zsl (dennis. China)
+**		at 2021.07.xx
+\****************************************************/
+
+template<class T1, class Base>
+struct zhelper_assert_nsobject2 : public zhelper_assert_nsobject2<typename Base, typename Base::base>
+{
+
+};
+
+template<class T1>
+struct zhelper_assert_nsobject2<T1, T1>
+{
+private:
+	virtual void compilerErorYourClassIsNotNSObject() = 0;
+};
+
+template<class T>
+struct zhelper_assert_nsobject
+{
+	typedef typename zhelper_assert_nsobject2<typename T, typename T::base> value;
+};
+
+template<>
+struct zhelper_assert_nsobject2<NSObject, NSObject>
+{
+	typedef NSObject result;
+};
+
+#define HELPER_ASSERT_NSOBJECT(Class) zhelper_assert_nsobject<Class>::value ___assert_your_class_is_a_NSObject___;
+
+#define nil (nilObject)
+
+class __strong_obj
+{
+protected:
+	NSObject* _obj;
+protected:
+	~__strong_obj()
+	{
+		_obj->release();
+	}
+	__strong_obj()
+		: _obj(nilObject)
+	{
+
+	}
+	__strong_obj(NSObject* obj)
+		: _obj(obj->retain())
+	{
+
+	}
+};
+
+template<class T> class __weak;
+
+template<class T>
+class __strong : public __strong_obj
+{
+public:
+	~__strong()
+	{
+		HELPER_ASSERT_NSOBJECT(T);
+	}
+	__strong() : __strong_obj()
+	{
+
+	}
+	__strong(T* obj) 
+		: __strong_obj(reinterpret_cast<NSObject*>(obj))
+	{
+
+	}
+	__strong(__strong& other)
+		: __strong_obj(reinterpret_cast<NSObject*>(other._obj))
+	{
+
+	}
+	__strong(__weak<typename T>&);
+	__strong& operator = (T* obj)
+	{
+		_obj->release();
+		_obj = reinterpret_cast<NSObject*>(obj)->retain();
+		return *this;
+	}
+	__strong& operator = (__strong& other)
+	{
+		_obj->release();
+		_obj = other._obj->retain();
+		return *this;
+	}
+	__strong& operator = (__weak<typename T>&);
+
+	T* operator -> ()
+	{
+		return reinterpret_cast<T*>(_obj);
+	}
+	operator bool()
+	{
+		return !_obj && nil != _obj;
+	}
+	friend class __weak<typename T>;
+};
+
+class __weak_obj
+{
+protected:
+	obj_class* _obj;
+protected:
+	~__weak_obj();
+	__weak_obj();
+	__weak_obj(NSObject*);
+	__weak_obj(obj_class*);
+	NSObject* lock();
+	void assign(NSObject*);
+	void assign(obj_class*);
+};
+
+template<class T>
+class __weak : public __weak_obj
+{
+public:
+	~__weak()
+	{
+		HELPER_ASSERT_NSOBJECT(T);
+	}
+	__weak()
+		: __weak_obj()
+	{
+
+	}
+	__weak(T* obj)
+		: __weak_obj(reinterpret_cast<NSObject*>(obj))
+	{
+
+	}
+	__weak(__weak& other)
+		: __weak_obj(other._obj)
+	{
+
+	}
+	__weak(__strong<typename T>& strong)
+		: __weak(reinterpret_cast<NSObject*>(strong._obj))
+	{
+
+	}
+	__weak& operator = (T* obj)
+	{
+		assign(reinterpret_cast<NSObject*>(obj));
+		return *this;
+	}
+	__weak& operator = (__weak& other)
+	{
+		assign(other._obj);
+		return *this;
+	}
+	__weak& operator = (__strong<typename T>& strong)
+	{
+		assign(reinterpret_cast<NSObject*>(strong._obj));
+		return *this;
+	}
+};
 
 
+template<class T>
+inline
+__strong<T>::__strong(__weak<typename T>& weak) 
+{
+	_obj = weak.lock();
+}
 
-
+template<class T>
+inline
+__strong<T>& __strong<T>::operator = (__weak<typename T>& weak) 
+{
+	_obj->release();
+	_obj = weak.lock();
+	return *this;
+}
 
 #endif
