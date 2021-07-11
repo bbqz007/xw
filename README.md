@@ -23,6 +23,8 @@ photo below is shown for wall-behive.
 ## classes
 CALayer
 
+CARootLayer (2021)
+
 CATextLayer
 
 CAAnimation
@@ -30,6 +32,8 @@ CAAnimation
 CGContext
 
 NSAutoReleasePool
+
+NSDispatcher (2021)
 
 CGAffineTransform
 
