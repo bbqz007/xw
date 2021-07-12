@@ -67,9 +67,9 @@ CGAffineTransform
 2. override the virtual method `CALayer::drawInContext()`
 
 ## autorelease
-1. scope between _0_autorelease and _1_autorelease
+1. scope between `_0_autorelease` and `_1_autorelease`
 
-2. NSObjects can use autorelease method.
+2. NSObjects can use `autorelease()` method.
 ## lifetime
 1. all the NSObjects only allowed to be created by `NSObject::allocT<Ty>()`, any `new` or scoped creation would throw.
 2. `release()` by hand, or `autorelease()`
