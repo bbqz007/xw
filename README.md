@@ -47,8 +47,8 @@ CGAffineTransform
 ## use animation engine
 1. attach a `CARootLayer` to win32 window handle
 2. `addSublayer()` `CALayer` to this `CARootLayer`
-3. `display()` this `CARootLayer` in the win32 window's WM_PAINT wndproc.
-4. `setFrame()` while this win32 window's WM_SIZE etc.
+3. `display()` this `CARootLayer` in the win32 window's `WM_PAINT` wndproc.
+4. `setFrame()` while this win32 window's `WM_SIZE` etc.
 
 ## two way to write animations
 1. use `CAAnimation` to `commit()` a animation job.
