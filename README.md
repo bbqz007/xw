@@ -46,7 +46,7 @@ CGAffineTransform
 
 ## use animation engine
 1. attach a `CARootLayer` to win32 window handle
-2. `addSublayer()` to this `CARootLayer`
+2. `addSublayer()` `CALayer` to this `CARootLayer`
 3. `display()` this `CARootLayer` in the win32 window's WM_PAINT wndproc.
 4. `setFrame()` while this win32 window's WM_SIZE etc.
 
