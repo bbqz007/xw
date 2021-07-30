@@ -70,7 +70,7 @@ private:
 
 //#define nilObject getNilObject()
 //NS_EXTERN NSObject* getNilObject();
-extern "C" NS_EXTERN NSObject* nilObject;
+extern "C" NS_EXTERN NSObject* const nilObject;
 
 inline NSObject::operator bool()
 {
@@ -153,12 +153,17 @@ public:
 	{
 
 	}
-	__strong(T* obj) 
+	__strong(T* obj)
 		: __strong_obj(reinterpret_cast<NSObject*>(obj))
 	{
 
 	}
 	__strong(__strong& other)
+		: __strong_obj(reinterpret_cast<NSObject*>(other._obj))
+	{
+
+	}
+	__strong(const __strong& other)
 		: __strong_obj(reinterpret_cast<NSObject*>(other._obj))
 	{
 
@@ -184,12 +189,12 @@ public:
 	}
 	operator bool()
 	{
-		return !_obj && nil != _obj;
+		return NULL != _obj && nil != _obj;
 	}
 	friend class __weak<typename T>;
 };
 
-class __weak_obj
+class NS_EXTERN __weak_obj
 {
 protected:
 	obj_class* _obj;
@@ -251,14 +256,14 @@ public:
 
 template<class T>
 inline
-__strong<T>::__strong(__weak<typename T>& weak) 
+__strong<T>::__strong(__weak<typename T>& weak)
 {
 	_obj = weak.lock();
 }
 
 template<class T>
 inline
-__strong<T>& __strong<T>::operator = (__weak<typename T>& weak) 
+__strong<T>& __strong<T>::operator = (__weak<typename T>& weak)
 {
 	_obj->release();
 	_obj = weak.lock();
