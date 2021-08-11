@@ -26,7 +26,7 @@ NSObject
 
 CALayer
 
-CARootLayer (2021)
+[CARootLayer (2021)](doc/CARootLayer.md)
 
 CATextLayer
 
@@ -34,7 +34,7 @@ CAAnimation
 
 CGContext
 
-NSAutoReleasePool
+[NSAutoReleasePool](doc/NSAutoReleasePool.md)
 
 NSDispatcher (2021)
 
