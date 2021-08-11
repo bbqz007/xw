@@ -33,7 +33,10 @@ or call `CARootLayer::displayInClient()` if you `setFrame()` as the frame of `::
 * call `void CARootLayer::attachWindow(HWND hwnd)` to attach a window after a `CARootLayer` is created.
 * call `CARootLayer::displayInWindow()` or `CARootLayer::displayInClient()` in WM_PAINT wndproc of the attached window.
 
+### animation
+any animation of layer which has `addSublayer()` to the Layer Hierarchy of the `CARootLayer`, will belongs to the same engine.
 
+animations should commit in ui thread. use `NSDispatcher` to dispatch `commit()` from non ui thread to ui thread.
 
 
 
