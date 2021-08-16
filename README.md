@@ -88,3 +88,8 @@ CGAffineTransform
 [if you are behive a wall, click here](https://www.cnblogs.com/bbqzsl/p/13285949.html)
 
 https://github.com/bbqz007/stock-drawing-assistant-tool
+
+--------------------------------------------------------
+
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_Load.gif)
+https://github.com/bbqz007/KTL
