@@ -50,6 +50,7 @@ typedef CGContext* CGContextRef;
 //typedef ::Gdiplus::Matrix CGAffineTransform;
 
 #include "CGAffineTransform.h"
+#include "CGGradient.h"
 #include "CGContext.h"
 #include "CGContext+Func.h"
 
@@ -64,6 +65,10 @@ typedef CGContext* CGContextRef;
 #define CGRectGetMidX(rect)		((CGRectGetX(rect) + CGRectGetX(rect) + CGRectGetWidth(rect)) / 2)
 #define CGRectGetMidY(rect)		((CGRectGetY(rect) + CGRectGetY(rect) + CGRectGetHeight(rect)) / 2)
 #define CGRectGetCenter(rect)	CGPoint(CGRectGetMidX(rect), CGRectGetMidY(rect))
+
+#ifndef CGPI
+#define CGPI 3.1415926f
+#endif //CGPI
 
 #define MATRIX_GETTER_IMPL(t)	\
 { CGFloat m[6]; _##t.GetElements(&m[0]); t1.SetElements(m[0], m[1], m[2], m[3], m[4], m[5]); }
