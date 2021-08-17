@@ -100,6 +100,9 @@ protected:
 	::Gdiplus::GraphicsPath _path;
 	void* _backingBackground;
 	::Gdiplus::Bitmap* _backingBackgrndImage;
+	
+	CGLinearGradientRef	_linearGradient;
+	CGRadialGradientRef _radialGradient;
 };
 
 #endif

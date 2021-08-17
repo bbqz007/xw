@@ -585,6 +585,7 @@ CG_EXTERN void CGContextSetShadowWithColor(CGContextRef context, CGSize offset,
 
 CG_EXTERN void CGContextSetShadow(CGContextRef context, CGSize offset,
   CGFloat blur) CG_AVAILABLE_STARTING(__MAC_10_3, __IPHONE_2_0);
+#endif
 
 /** Gradient and shading functions. **/
 
@@ -614,6 +615,7 @@ CG_EXTERN void CGContextDrawRadialGradient(CGContextRef context,
   CGPoint endCenter, CGFloat endRadius, CGGradientDrawingOptions options)
   CG_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 
+#if 0
 /* Fill the current clipping region of `context' with `shading'. */
 
 CG_EXTERN void CGContextDrawShading(CGContextRef context, CGShadingRef shading)
