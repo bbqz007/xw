@@ -43,6 +43,11 @@ public:
 	CA_EXTERN void displayInWindow();
 	CA_EXTERN void displayInClient();
 #ifdef HAS_WTL
+	//// if you call TrackPopupMenu(), 
+	////  you should call PreTranslateMessageInMessgaeLoop() in your message loop 
+	////  or PreProcessMessageInWndProc() in your attched window's wndproc,
+	////  although you init with WTL.
+	//// because TrackPopupMenu() has its own controlled messgae loop.
 	CA_EXTERN static void init(WTL::CAppModule*,
 		WTL::CMessageLoop*(WTL::CAppModule::*get)(DWORD) const = &WTL::CAppModule::GetMessageLoop,
 		BOOL(WTL::CMessageLoop::*add)(WTL::CMessageFilter*) = &WTL::CMessageLoop::AddMessageFilter,
