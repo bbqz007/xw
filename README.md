@@ -92,4 +92,5 @@ https://github.com/bbqz007/stock-drawing-assistant-tool
 --------------------------------------------------------
 
 ![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_Load.gif)
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO.gif)
 https://github.com/bbqz007/KTL
