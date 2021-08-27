@@ -37,6 +37,7 @@ public:
 	void scale(CGFloat sx, CGFloat sy);
 	void rotate(CGFloat angle);
 	void commit();
+	void commit2();
 	ULONG_PTR hash();
 	BOOL isExpired();
 	BOOL isActivate();
@@ -47,7 +48,14 @@ protected:
 private:
 	CAAnimation();
 protected:
+#if 0 /// compatible 
 	BOOL _commited;
+#else
+	struct {
+		BOOL _commited : 1;
+		BOOL _highFrameRateMode : 1;
+	} _flags;
+#endif
 	CGRect _beginFrame;
 	CGFloat _beginAlpha;
 	CGAffineTransform _beginTransform;
@@ -59,6 +67,7 @@ protected:
 	CALayer* _animeLayer;
 	friend CA_EXTERN void buildActivateAnimations();
 	friend CA_EXTERN void commitAnimating(CAAnimation* anime);
+	friend CA_EXTERN void removeAnimating(CAAnimation* anime);
 	friend class CAPrivateRootLayer;
 };
 

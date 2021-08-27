@@ -56,6 +56,10 @@ public:
 	CA_EXTERN static void initAgainstWTL();
 	CA_EXTERN static BOOL PreTranslateMessageInMessgaeLoop(MSG*);
 	CA_EXTERN static BOOL PreProcessMessageInWndProc(HWND, UINT, WPARAM, LPARAM);
+
+public:
+	CA_EXTERN BOOL acquireHighFrameRateMode();
+	CA_EXTERN BOOL releaseHighFrameRateMode();
 public:
 	typedef CARootLayer this_type;
 	typedef CALayer base;

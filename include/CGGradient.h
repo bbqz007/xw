@@ -21,16 +21,14 @@ SOFTWARE.
 #ifndef _Z_CGGradient_H_
 #define  _Z_CGGradient_H_
 
-#include "CoreGraphics.h"
-#include <vector>
+#include "CGBase.h"
+#include "CGColor.h"
 
 typedef uintptr_t CGColorSpaceRef;
 
 #define CGColorSpaceCreateDeviceRGB() (0)
 
 typedef CGColor* CGColorArrayRef;
-typedef ::Gdiplus::LinearGradientBrush CGLinearGradient;
-typedef ::Gdiplus::PathGradientBrush CGRadialGradient;
 
 enum CGGradientDrawingOptions
 {
@@ -38,34 +36,80 @@ enum CGGradientDrawingOptions
 	kCGGradientDrawsAfterStartLocation = (1 << 1)
 };
 
+typedef ::Gdiplus::LinearGradientBrush CGLinearGradient;
+typedef ::Gdiplus::PathGradientBrush CGRadialGradient;
+
+//// CGCradient is a lite object for function scope.
+//// if you have more than 4 colors, use CGGradientCreateWithColors() to create a large object.
+////  and do not forget use CGGradientRelease() to delete this object.
+//// CoreGraphics objects are not NSObject, they are not managed by refcount.
+
+class CGGradient;
+typedef CGGradient* CGGradientRef;
 class CGGradient
 {
 public:
+	virtual ~CGGradient()
+	{
+		_count = 0;
+	}
 	CGGradient(CGColorArrayRef colors, const CGFloat *locations, size_t count)
 	{
-		_colors.reserve(count);
-		_colors.assign(colors, colors + count);
-		if (!locations)
+		_count = min(4, count);
+		switch (count)
 		{
-			_locations.clear();
-			_locations.push_back(0.f);
-			_locations.push_back(1.f);
-		}
-		else
-		{
-			_locations.reserve(count);
-			_locations.assign(locations, locations + count);
+		case 1:
+			_colors[0] = colors[0];
+			_locations[0] = 1.f;
+			break;
+		case 2:
+			_colors[0] = colors[0];
+			_colors[1] = colors[1];
+			_locations[0] = 0.f;
+			_locations[1] = 1.f;
+			break;
+		case 3:
+			_colors[0] = colors[0];
+			_colors[1] = colors[1];
+			_locations[0] = locations[0];
+			_locations[1] = locations[1];
+			_colors[2] = colors[2];
+			_locations[2] = locations[2];
+			break;
+		case 4:
+			_colors[0] = colors[0];
+			_colors[1] = colors[1];
+			_locations[0] = locations[0];
+			_locations[1] = locations[1];
+			_colors[2] = colors[2];
+			_colors[3] = colors[3];
+			_locations[2] = locations[2];
+			_locations[3] = locations[3];
+			break;
+		default:
+			break;
 		}
 	}
-	std::vector<CGColor> _colors;
-	std::vector<CGFloat> _locations;
+	CGColor _colors[4];
+	CGFloat _locations[4];
+protected:
+	unsigned int _count;
+protected:
+	CGGradient();
+private:
+	CG_EXTERN void(operator delete)(void* in_pVoid);
+	CG_EXTERN void* (operator new)(size_t in_size);
+	void* (operator new)(size_t in_size, void*);
+	void(operator delete[])(void* in_pVoid);	// delete
+	void* (operator new[])(size_t in_size);		// delete
+	friend CG_EXTERN CGGradientRef CGGradientCreateWithColors(CGColorSpaceRef space, CGColorArrayRef colors, const CGFloat *locations, size_t count);
+	friend CG_EXTERN void CGGradientRelease(CGGradientRef gradient);
 };
 
-typedef CGGradient* CGGradientRef;
 typedef CGLinearGradient* CGLinearGradientRef;
 typedef CGRadialGradient* CGRadialGradientRef;
 
-CGGradientRef CGGradientCreateWithColors(CGColorSpaceRef space, CGColorArrayRef colors, const CGFloat *locations);
-
+CG_EXTERN CGGradientRef CGGradientCreateWithColors(CGColorSpaceRef space, CGColorArrayRef colors, const CGFloat *locations, size_t count);
+CG_EXTERN void CGGradientRelease(CGGradientRef gradient);
 
 #endif // _Z_CGGradient_H_

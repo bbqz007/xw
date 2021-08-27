@@ -22,6 +22,7 @@ SOFTWARE.
 #define _Z_CGContext_Func_H_
 
 #include "CGContext.h"
+#include "CGGradient.h"
 /** Graphics state functions. **/
 
 /* Push a copy of the current graphics state onto the graphics state stack.
