@@ -14,6 +14,14 @@ in
 cocoa
 frameworks.
 
+-----------------------------------------------
+
+newest
+
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO.gif)
+
+-----------------------------------------------
+
 ![img](https://github.com/bbqz007/xw/blob/master/demo/XWQ.demo.gif)
 
 photo below is shown for wall-behive.
