@@ -5,7 +5,7 @@ _frame_ indicates position and size, _transform_ indicates the tranlastion, rota
 
 it draws background color and border on the _frame_, _cornerRadius_ can easily make radius corners to border.
 
-_smoothBorder_ indicates consume performance to make smooth radius corners。
+_smoothBorder_ indicates consuming performance to make smooth radius corners。
 
 ### properties
 * frame : `CGRect`
