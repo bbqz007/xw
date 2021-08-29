@@ -8,10 +8,10 @@ it draws background color and border on the _frame_, _cornerRadius_ can easily m
 _smoothBorder_ indicates consuming performance to make smooth radius corners。
 
 ### properties
-* frame : `CGRect`
+* **frame** : `CGRect`
   * \[getter] frame()
   * \[setter] setFrame() 
-* bounds : `CGRect`
+* **bounds** : `CGRect`
   * \[getter] bounds()
     * X and Y are always 0.f. 
   * \[setter] setBounds()
@@ -19,16 +19,16 @@ _smoothBorder_ indicates consuming performance to make smooth radius corners。
 * anchorPoint : `CGPoint` \[NoImpl] 
   * by default, the anchor point is located at the center of bounds. 
 * zPosition : `CGFloat` \[NoImpl] 
-* transform : `CGAffineTransform`
+* **transform** : `CGAffineTransform`
   * \[getter] transform()
   * \[setter] setTransform() 
-* hidden : `BOOL`
+* **hidden** : `BOOL`
   * \[getter] isHidden()
   * \[setter] setHidden() 
-* superLayer : `CALayer*`
+* **superLayer** : `CALayer*`
   * \[getter] superLayer()
   * \[setter] setSuperLayer() 
-* sublayers : `NSArray*`
+* **sublayers** : `NSArray*`
   * \[getter] sublayers()
   * \[setter] setSublayers() 
 * mask : `CALayer*` \[NoImpl]
@@ -36,19 +36,19 @@ _smoothBorder_ indicates consuming performance to make smooth radius corners。
 * opaque ：`BOOL` \[NoImpl]
 * needsDisplayOnBoundsChange : `BOOL` \[NoImpl]
 * drawsAsynchronously : `BOOL` \[NoImpl] 
-* backgroundColor : `CGColor`
+* **backgroundColor** : `CGColor`
   * \[getter] backgroundColor()
   * \[setter] set_backgroundColor()  
-* cornerRadius : `CGFloat`
+* **cornerRadius** : `CGFloat`
   * \[getter] cornerRadius()
   * \[setter] set_cornerRadius()  
-* borderWidth : `CGFloat`
+* **borderWidth** : `CGFloat`
   * \[getter] borderWidth()
   * \[setter] set_borderWidth()  
-* borderColor : `CGFloat`
+* **borderColor** : `CGFloat`
   * \[getter] borderColor()
   * \[setter] set_borderColor()  
-* opacity : `CGFloat`
+* **opacity** : `CGFloat`
   * \[getter] opacity()
   * \[setter] set_opacity()  
 * allowsGroupOpacity : `BOOL` \[NoImpl] 
@@ -60,11 +60,11 @@ _smoothBorder_ indicates consuming performance to make smooth radius corners。
 * shadowOpacity : `CGFloat` \[NoImpl] 
 * shadowRadius : `CGFloat` \[NoImpl] 
 * shadowPath : `CGPath` \[NoImpl] 
-* smoothBorder : `BOOL` \[Extend] 
+* **smoothBorder** : `BOOL` \[Extend] 
   * would consume some performance. 
   * \[getter] smoothBorder()
   * \[setter] set_smoothBorder()  
-* smoothBorderWidth : `CGFloat` \[Extend]  
+* **smoothBorderWidth** : `CGFloat` \[Extend]  
   * recommand to set twice of _borderWidth_.
   * \[getter] smoothBorderWidth()
   * \[setter] set_smoothBorderWidth()  
