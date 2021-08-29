@@ -57,3 +57,11 @@
 * smoothBorderWidth : `CGFloat` \[Extend]  
   * \[getter] smoothBorderWidth()
   * \[setter] set_smoothBorderWidth()  
+
+### extendable functions
+the three virtual functions below are called by `display()`.
+* `virtual void applyAnimating()`
+ * if one layer commits a `CAAnimation` and the `CAAnimation` is now activated, this function will be called.
+ * by defalut, `CALayer::applyAnimating()` changes _frame_, _transform_ and _opacity_ proportionally to time track.
+* `virtual void layoutSublayers()`
+* `virtual void drawInContext(CGContext* ctx)`
