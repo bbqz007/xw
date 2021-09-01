@@ -7,6 +7,8 @@ The Core Animation Engine is implemented to attach to one WIN32 window.
 
 It is no border and no background by default.
 
+you can easily use [CAAnimation](CAAnimation.md)
+
 ### WTL mode
 you should use `static void CARootLayer::init(WTL::CAppModule*,,,)` to init the Core Animation Engine with WTL.
 
