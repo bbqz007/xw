@@ -43,7 +43,7 @@ SOFTWARE.
 
 #include "CoreGraphics.h"
 
-typedef enum {
+typedef enum CGTextDrawingMode{
 	kCGTextFill,
 	kCGTextStroke,
 	kCGTextFillStroke,
@@ -52,8 +52,8 @@ typedef enum {
 	//kCGTextStrokeClip,
 	//kCGTextFillStrokeClip,
 	//kCGTextClip
-} CGTextDrawingMode;
-//typedef enum CGTextDrawingMode CGTextDrawingMode;
+} ;
+typedef enum CGTextDrawingMode CGTextDrawingMode;
 
 struct CGContextState
 {

@@ -659,8 +659,8 @@ CG_EXTERN CGAffineTransform CGContextGetTextMatrix(CGContextRef c)
 /* Set the text drawing mode in the current graphics state of the context
    `c' to `mode'. */
 
-CG_EXTERN void CGContextSetTextDrawingMode(CGContextRef c, 
-	/**CGTextDrawingMode*/ unsigned int mode) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+CG_EXTERN void CGContextSetTextDrawingMode(CGContextRef c,
+	enum CGTextDrawingMode mode) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 #endif
 
 #if 1
