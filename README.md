@@ -40,7 +40,7 @@ NSObject
 
 CATextLayer
 
-CAAnimation
+[CAAnimation](doc/CAAnimation.md)
 
 [CGContext](doc/CGContext.md)
 
@@ -52,7 +52,7 @@ NSDispatcher (2021)
 
 \_\_weak
 
-CGAffineTransform
+[CGAffineTransform](doc/CGAffineTransform.md)
 
 ## use animation engine
 1. attach a `CARootLayer` to win32 window handle
