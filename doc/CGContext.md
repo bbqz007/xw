@@ -6,7 +6,10 @@ all the CG Objects are not NSObject.
 CALayer display() use CGContext and CGContext functions and CG Objects.
 
 ### api
-* gstate
+* _gstate
+  * save and restore
+    * **CGContextSaveGState**`(CGContextRef c)`
+    * **CGContextRestoreGState**`(CGContextRef c)`
   * transformation
     * **CGContextScaleCTM**`(CGContextRef c, CGFloat sx, CGFloat sy)`
     * **CGContextTranslateCTM**`(CGContextRef c, CGFloat tx, CGFloat ty)` 
@@ -23,7 +26,7 @@ CALayer display() use CGContext and CGContext functions and CG Objects.
     * **CGContextSetStrokeColorWithColor**`(CGContextRef c, CGColorRef color) `
     * **CGContextSetRGBFillColor**`(CGContextRef context, CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)`
     * **CGContextSetRGBStrokeColor**`(CGContextRef context, CGFloat red, CGFloat green, CGFloat blue, CGFloat alpha)`
-* path
+* _path
   * **CGContextBeginPath**`(CGContextRef c)`
   * **CGContextMoveToPoint**`(CGContextRef c, CGFloat x, CGFloat y)`
   * **CGContextAddLineToPoint**`(CGContextRef c, CGFloat x, CGFloat y)`
@@ -39,18 +42,18 @@ CALayer display() use CGContext and CGContext functions and CG Objects.
   * **CGContextIsPathEmpty**`(CGContextRef context)`
   * **CGContextGetPathCurrentPoint**`(CGContextRef context)`
   * **CGContextGetPathBoundingBox**`(CGContextRef context)`
-* stroke
+* _stroke
   * **CGContextStrokePath**`(CGContextRef c)`
   * **CGContextStrokeRect**`(CGContextRef c, CGRect rect)`
   * **CGContextStrokeRectWithWidth**`(CGContextRef c, CGRect rect, CGFloat width)`
   * **CGContextStrokeEllipseInRect**`(CGContextRef context, CGRect rect)`
   * **CGContextStrokeLineSegments**`(CGContextRef c, const CGPoint points[], size_t count)`
-* fill
+* _fill
   * **CGContextFillPath**`(CGContextRef c)`
   * **CGContextFillRect**`(CGContextRef c, CGRect rect)`
   * **CGContextFillRects**`(CGContextRef c, const CGRect rects[], size_t count)`
   * **CGContextFillEllipseInRect**`(CGContextRef context, CGRect rect)`
-* text
+* _text
   * **CGContextSetTextPosition**`(CGContextRef c, CGFloat x, CGFloat y)`
   * **CGContextGetTextPosition**`(CGContextRef context)`
   * **CGContextSetTextDrawingMode**`(CGContextRef c, CGTextDrawingMode mode)`
@@ -61,7 +64,7 @@ CALayer display() use CGContext and CGContext functions and CG Objects.
 * gradient
   * **CGContextDrawLinearGradient**`(CGContextRef context, CGGradientRef gradient, CGPoint startPoint, CGPoint endPoint, CGGradientDrawingOptions options)`
   * **CGContextDrawRadialGradient**`(CGContextRef context, CGGradientRef gradient, CGPoint startCenter, CGFloat startRadius, CGPoint endCenter, CGFloat endRadius, CGGradientDrawingOptions options)`
-* antialias
+* _antialias
   * **CGContextSetShouldAntialias**`(CGContextRef context, bool shouldAntialias)`
   * **CGContextSetShouldSmoothFonts**`(CGContextRef context, bool shouldSmoothFonts)`
 
