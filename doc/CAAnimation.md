@@ -5,7 +5,7 @@ change the end properties by specifing values to the CAAnimation.
 
 commit this CAAnimation.
 
-the layer should be in the sublayers tree of [CARootLayer](../CARootLayer.md)
+the layer should be in the sublayers tree of [CARootLayer](CARootLayer.md)
 
 ### example
 ```
