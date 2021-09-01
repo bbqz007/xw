@@ -8,8 +8,8 @@ windows
 platform
 some
 like
-core
-animation
+**Core**
+**Animation**
 in
 cocoa
 frameworks.
