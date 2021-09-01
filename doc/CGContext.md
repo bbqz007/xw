@@ -6,7 +6,7 @@ all the CG Objects are not NSObject.
 CALayer display() use CGContext and CGContext functions and CG Objects.
 
 ### api
-* _gstate
+* *gstate
   * save and restore
     * **CGContextSaveGState**`(CGContextRef c)`
     * **CGContextRestoreGState**`(CGContextRef c)`
