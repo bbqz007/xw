@@ -23,6 +23,7 @@ SOFTWARE.
 
 #include "CGContext.h"
 #include "CGGradient.h"
+
 /** Graphics state functions. **/
 
 /* Push a copy of the current graphics state onto the graphics state stack.
@@ -622,15 +623,16 @@ CG_EXTERN void CGContextDrawRadialGradient(CGContextRef context,
 CG_EXTERN void CGContextDrawShading(CGContextRef context, CGShadingRef shading)
   CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
 #endif
-/** Text functions. **/
 
+/** Text functions. **/
+#if 0
 /* Set the current character spacing in `context' to `spacing'. The
    character spacing is added to the displacement between the origin of one
    character and the origin of the next. */
 
 CG_EXTERN void CGContextSetCharacterSpacing(CGContextRef context,
   CGFloat spacing) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-
+#endif
 /* Set the user-space point at which text will be drawn in the context `c'
    to `(x, y)'. */
 
@@ -641,7 +643,7 @@ CG_EXTERN void CGContextSetTextPosition(CGContextRef c, CGFloat x, CGFloat y)
 
 CG_EXTERN CGPoint CGContextGetTextPosition(CGContextRef context)
   CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-
+#if 0
 /* Set the text matrix in the context `c' to `t'. */
 
 CG_EXTERN void CGContextSetTextMatrix(CGContextRef c, CGAffineTransform t)
@@ -651,13 +653,17 @@ CG_EXTERN void CGContextSetTextMatrix(CGContextRef c, CGAffineTransform t)
 
 CG_EXTERN CGAffineTransform CGContextGetTextMatrix(CGContextRef c)
   CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-#if 0
+#endif	// Text functions
+
+#if 1
 /* Set the text drawing mode in the current graphics state of the context
    `c' to `mode'. */
 
-CG_EXTERN void CGContextSetTextDrawingMode(CGContextRef c,
-  CGTextDrawingMode mode) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+CG_EXTERN void CGContextSetTextDrawingMode(CGContextRef c, 
+	/**CGTextDrawingMode*/ unsigned int mode) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 #endif
+
+#if 1
 /* Set the font in the current graphics state of the context `c' to
    `font'. */
 
@@ -669,6 +675,28 @@ CG_EXTERN void CGContextSetFont(CGContextRef c, CGFontRef font)
 
 CG_EXTERN void CGContextSetFontSize(CGContextRef c, CGFloat size)
   CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+#endif // font
+
+/** Text convenience functions. **/
+#if 1
+/* Draw `string', a string of `length' bytes, at the point specified by the
+text matrix in the context `c'. Each byte of the string is mapped through
+the encoding vector of the current font to obtain the glyph to
+display. */
+
+CG_EXTERN void CGContextShowText(CGContextRef c, const char *string,
+	size_t length) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+
+/* Draw `string', a string of `length' bytes, at the point `(x, y)',
+specified in user space, in the context `c'. Each byte of the string is
+mapped through the encoding vector of the current font to obtain the
+glyph to display. */
+
+CG_EXTERN void CGContextShowTextAtPoint(CGContextRef c, CGFloat x, CGFloat y,
+	const char *string, size_t length)
+	CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
+#endif	// ShowText
+
 #if 0
 /* Draw `glyphs', an array of `count' CGGlyphs, at the points specified by
    `positions'. Each element of `positions' specifies the position from the
@@ -720,13 +748,13 @@ CG_EXTERN void CGContextSynchronize(CGContextRef c)
   CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 #endif
 /** Antialiasing functions. **/
-#if 0
+
 /* Turn on antialiasing if `shouldAntialias' is true; turn it off otherwise.
    This parameter is part of the graphics state. */
 
 CG_EXTERN void CGContextSetShouldAntialias(CGContextRef context,
   bool shouldAntialias) CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-
+#if 0
 /* Allow antialiasing in `context' if `allowsAntialiasing' is true; don't
    allow it otherwise. This parameter is not part of the graphics state. A
    context will perform antialiasing if both `allowsAntialiasing' and the
@@ -734,7 +762,7 @@ CG_EXTERN void CGContextSetShouldAntialias(CGContextRef context,
 
 CG_EXTERN void CGContextSetAllowsAntialiasing(CGContextRef context,
   bool allowsAntialiasing) CG_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
-
+#endif
 /** Font display functions. **/
 
 /* Turn on font smoothing if `shouldSmoothFonts' is true; turn it off
@@ -744,7 +772,7 @@ CG_EXTERN void CGContextSetAllowsAntialiasing(CGContextRef context,
 
 CG_EXTERN void CGContextSetShouldSmoothFonts(CGContextRef context,
   bool shouldSmoothFonts) CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
-
+#if 0
 /* If `allowsFontSmoothing' is true, then allow font smoothing when
    displaying text in `context'; otherwise, don't allow font smoothing. This
    parameter is not part of the graphics state. Fonts will be smoothed if

@@ -43,6 +43,18 @@ SOFTWARE.
 
 #include "CoreGraphics.h"
 
+typedef enum {
+	kCGTextFill,
+	kCGTextStroke,
+	kCGTextFillStroke,
+	kCGTextInvisible
+	//kCGTextFillClip,
+	//kCGTextStrokeClip,
+	//kCGTextFillStrokeClip,
+	//kCGTextClip
+} CGTextDrawingMode;
+//typedef enum CGTextDrawingMode CGTextDrawingMode;
+
 struct CGContextState
 {
 	CGAffineTransform _pT; // parentTransform
@@ -55,13 +67,25 @@ struct CGContextState
 	void* _hdcCraft;
 };
 
+#ifndef COMPATIBLE_OLD_CGCONTEXT
+#define CGCTXDERPRECATED __declspec(deprecated("** this is a deprecated function **"))
+#else
+#define CGCTXDERPRECATED
+#endif
+
+#define kCGContextCurrentVersion ((sizeof(CGContext) << 16) | 220)
+
 class CALayer;
 class CG_EXTERN CGContext : protected CGContextState
 {
 public:
 	~CGContext();
-	CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CGRect frame);
-	CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CALayer* layer);
+#if defined(BUILD_DLL) || defined(COMPATIBLE_OLD_CGCONTEXT)
+	CGCTXDERPRECATED CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CGRect frame);
+	CGCTXDERPRECATED CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CALayer* layer);
+#endif
+	CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CGRect frame, unsigned int ver = kCGContextCurrentVersion);
+	CGContext(void* hdcPaint, void* hdcMem, void* hdcCraft, CALayer* layer, unsigned int ver = kCGContextCurrentVersion);
 	void enterLayer(CALayer* layer);
 	void leaveLayer();
 	void* getDcMem() {return _hdcMem;}
@@ -88,6 +112,12 @@ private:
 	CGContext(const CGContext&);
 	void operator = (const CGContext&);
 	void enterSuperLayer(CALayer* layer);
+
+	void(operator delete)(void* in_pVoid);
+	void* (operator new)(size_t in_size);
+	void* (operator new)(size_t in_size, void*);
+	void(operator delete[])(void* in_pVoid);	// delete
+	void* (operator new[])(size_t in_size);		// delete
 protected:
 	void* _stack;
 	::Gdiplus::Graphics _g;
@@ -100,9 +130,13 @@ protected:
 	::Gdiplus::GraphicsPath _path;
 	void* _backingBackground;
 	::Gdiplus::Bitmap* _backingBackgrndImage;
-	
+
+	unsigned int _reserved;
 	CGLinearGradientRef	_linearGradient;
 	CGRadialGradientRef _radialGradient;
+	CGFontRef _textFont;
+	CGPoint _textPoint;
+	CGTextDrawingMode _textMode;
 };
 
 #endif
