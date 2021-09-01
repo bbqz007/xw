@@ -8,11 +8,11 @@ CALayer display() use CGContext and CGContext functions and CG Objects.
 ### api
 * gstate
   * transformation
-    * `CGContextScaleCTM(CGContextRef c, CGFloat sx, CGFloat sy)`
-    * `CGContextTranslateCTM(CGContextRef c, CGFloat tx, CGFloat ty)` 
-    * `CGContextRotateCTM(CGContextRef c, CGFloat angle)`
-    * `CGContextConcatCTM(CGContextRef c, CGAffineTransform transform)`
-    * `CGAffineTransform CGContextGetCTM(CGContextRef c)`
+    * **CGContextScaleCTM**`(CGContextRef c, CGFloat sx, CGFloat sy)`
+    * **CGContextTranslateCTM**`(CGContextRef c, CGFloat tx, CGFloat ty)` 
+    * **CGContextRotateCTM**`(CGContextRef c, CGFloat angle)`
+    * **CGContextConcatCTM**`(CGContextRef c, CGAffineTransform transform)`
+    * `CGAffineTransform` **CGContextGetCTM**`(CGContextRef c)`
   * line
     * lineWidth 
     * lineCap
