@@ -7,6 +7,13 @@ commit this CAAnimation.
 
 the layer should be in the sublayers tree of [CARootLayer](CARootLayer.md)
 
+### properties of CALayer for animation
+1. Frame.
+
+2. opacity.
+
+3. transform matrix.
+
 ### example
 ```
 CALayer* layer = ...;
