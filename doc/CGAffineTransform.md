@@ -1,0 +1,14 @@
+### api
+* CGAffineTransformMake
+* CGAffineTransformMakeTranslation
+* CGAffineTransformMakeScale
+* CGAffineTransformMakeRotation
+* CGAffineTransformIsIdentity
+* CGAffineTransformTranslate
+* CGAffineTransformScale
+* CGAffineTransformRotate
+* CGAffineTransformInvert
+* CGAffineTransformConcat
+* CGAffineTransformEqualToTransform
+* CGPointApplyAffineTransform
+* CGSizeApplyAffineTransform
