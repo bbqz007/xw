@@ -5,7 +5,7 @@ you should attach a thread to NSAutoreleasePool mechanism, before you use `NSAut
 
 `NSAutoreleasePool` is scoped in call frame. do not try to make it to global or member of class or heap.
 
-###
+### example
 ```c++
 NSAutoreleasePoolAttachCurrentThread();     // not necessary
 
@@ -28,7 +28,7 @@ NSObject* o = some->retain()->autorelease(); // node accept this autorelease
 _1_autoreleasepool
 ```
 
-### 
+### interfaces
 * classes
   * `NSAutoreleasePool`
 * functions
