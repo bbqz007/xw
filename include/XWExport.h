@@ -31,4 +31,16 @@ SOFTWARE.
 #define NS_EXTERN XWEXPORT
 #define CA_EXTERN XWEXPORT
 
+/// Z#20210902
+class CA_EXTERN CoreAnimationModule
+{
+public:
+	CoreAnimationModule();
+	~CoreAnimationModule();
+	uintptr_t _reserved[4];
+};
+#ifndef BUILD_DLL
+__declspec(selectany) CoreAnimationModule ____CoreAnimationModule;
+#endif
+
 #endif // _XW_EXPORT__H_
