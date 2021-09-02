@@ -7,7 +7,7 @@ you should attach a thread to NSAutoreleasePool mechanism, before you use `NSAut
 
 ###
 ```c++
-NSAutoreleasePoolAttachCurrentThread();
+NSAutoreleasePoolAttachCurrentThread();     // not necessary
 
 {
   NSAutoreleasePool node;
@@ -16,6 +16,16 @@ NSAutoreleasePoolAttachCurrentThread();
 
 NSAutoreleasePoolDrain();
 NSAutoreleasePoolDettachCurrentThread();
+```
+
+or 
+
+```c++
+_0_autoreleasepool 
+
+NSObject* o = some->retain()->autorelease(); // node accept this autorelease
+
+_1_autoreleasepool
 ```
 
 ### 
