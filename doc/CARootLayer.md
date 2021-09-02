@@ -10,7 +10,7 @@ It is no border and no background by default.
 you can easily use [CAAnimation](CAAnimation.md)
 
 ### WTL mode
-you should use `static void CARootLayer::init(WTL::CAppModule*,,,)` to init the Core Animation Engine with WTL.
+you should use `static void CARootLayer::init(WTL::CAppModule*)` to init the Core Animation Engine with WTL.
 
 this mode you should not handle anything. otherwise you should handle many stuffs by hand.
 
