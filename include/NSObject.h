@@ -137,7 +137,36 @@ protected:
 	{
 
 	}
+public:
+	bool operator == (NSObject* other) const
+	{
+		return _obj == other;
+	}
+	bool operator == (const __strong_obj& other) const
+	{
+		return _obj == other._obj;
+	}
+	bool operator != (NSObject* other) const
+	{
+		return _obj != other;
+	}
+	bool operator != (const __strong_obj& other) const
+	{
+		return _obj != other._obj;
+	}
 };
+
+inline 
+bool operator == (NSObject* other, const __strong_obj& strong)
+{
+	return strong == other;
+}
+
+inline
+bool operator != (NSObject* other, const __strong_obj& strong)
+{
+	return strong != other;
+}
 
 template<class T> class __weak;
 
@@ -194,7 +223,7 @@ public:
 	friend class __weak<typename T>;
 };
 
-class NS_EXTERN __weak_obj
+class __weak_obj
 {
 protected:
 	obj_class* _obj;
@@ -251,6 +280,7 @@ public:
 		assign(reinterpret_cast<NSObject*>(strong._obj));
 		return *this;
 	}
+	friend class __strong<typename T>;
 };
 
 

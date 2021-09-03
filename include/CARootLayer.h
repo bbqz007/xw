@@ -22,6 +22,7 @@ SOFTWARE.
 #define _Z_CARootLayer_H_
 
 #include "CALayer.h"
+#include "NSDispatcher.h"
 
 #define HAS_WTL 1
 //// if you do not want to use wtl any way, comment the line above.
@@ -60,6 +61,11 @@ public:
 public:
 	CA_EXTERN BOOL acquireHighFrameRateMode();
 	CA_EXTERN BOOL releaseHighFrameRateMode();
+public:
+#ifdef NS_CAN_USE_NSDispatcher
+	CA_EXTERN NSDispatcher* dispatcher();
+	CA_EXTERN NSDispatcher* retainDispatcher();
+#endif
 public:
 	typedef CARootLayer this_type;
 	typedef CALayer base;
