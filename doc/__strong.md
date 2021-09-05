@@ -17,7 +17,12 @@ implementing as a template class. you should specified the template parameter to
 
 **`__autoreleasing`** vs **NSAutoReleasePool**.
 
-### example
+### Forbidden
+you can not use **`__strong`**, **`__weak`** and **`__autoreleasing`** to apply to a non NSObject class;
+
+`zhelper_assert_nsobject<T>` would make the a compiler error to indicate that you are doing a forbidden thing.
+
+### Example
 ```c++
 
 __strong<CALayer> layer = NSObject::allocAndAutoreleasingT<CALayer>();
