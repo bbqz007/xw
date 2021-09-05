@@ -52,6 +52,8 @@ CATextLayer
 
 [\_\_weak](doc/__weak.md)
 
+[\_\_autoreleasing](doc/__autoreleasing.md)
+
 [CGAffineTransform](doc/CGAffineTransform.md)
 
 ## use animation engine
