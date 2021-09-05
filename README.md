@@ -48,9 +48,9 @@ CATextLayer
 
 [NSDispatcher (2021)](doc/NSDispatcher.md)
 
-\_\_strong
+[\_\_strong](doc/__strong.md)
 
-\_\_weak
+[\_\_weak](doc/__weak.md)
 
 [CGAffineTransform](doc/CGAffineTransform.md)
 
