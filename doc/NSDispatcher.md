@@ -1,11 +1,11 @@
 ### Overview
   [Grand Central Dispatch (GCD)](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html) in apple's cocoa programming.
   
-we use `dipatch_async()` to dispatch behives to `dispatch_get_main_queuq` which is unique **UI Thread** in cocoa program.
+we use `dipatch_async()` to dispatch behives to `dispatch_get_main_queuq` which is the unique **UI Thread** in cocoa program.
 
 In windows application, the window is implemented using active-object pattern. 
 
-we also need to dispatch window behives to the **ui thread** when created it and performs the message loop, by calling `SendMessage()` or `PostMessage()`.
+we also need to dispatch window behives to the **ui thread** which created it and performs the message loop, by calling `SendMessage()` or `PostMessage()`.
 
 here, CALayer is a Layer on window rather than a window, we should need to dispatch layer behives to the **ui thread** from a **non-ui thread**.
 
