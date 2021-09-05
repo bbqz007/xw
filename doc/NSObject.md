@@ -1,7 +1,7 @@
 ### Overview
 The root class of most CoreAnimation class hierarchies.
 
-a NSObject can use `isKindOf<T>` to check the class hierarchies.
+a NSObject can use `isKindOfClass<T>` to check out the class hierarchies.
 
 [**`__strong`**](__strong.md), [**`__weak`**](__weak.md) and [**`__autoreleasing`**](__autoreleasing.md) can apply to NSObject classes.
 
