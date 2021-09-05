@@ -1,5 +1,5 @@
 ### Overview
-The root class of most CoreAnimation class hierarchies.
+The root class of most CoreAnimation class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as NSObject objects..
 
 a NSObject can use `isKindOfClass<T>` to check out the class hierarchies.
 
