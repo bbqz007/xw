@@ -32,7 +32,7 @@ photo below is shown for wall-behive.
 ## ChangeLog
 [changelog](doc/changelog.md)
 ## classes
-NSObject
+[NSObject](doc/NSObject.md)
 
 [CALayer](doc/CALayer.md)
 
@@ -46,7 +46,7 @@ CATextLayer
 
 [NSAutoReleasePool](doc/NSAutoReleasePool.md)
 
-NSDispatcher (2021)
+[NSDispatcher (2021)](doc/NSDispatcher.md)
 
 \_\_strong
 
