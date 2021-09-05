@@ -34,6 +34,7 @@ SOFTWARE.
 #include "XWExport.h"
 
 struct obj_class;
+template<class T> class __autoreleasing;
 
 class NSObject
 {
@@ -53,6 +54,12 @@ public:
 	static _Ty* allocT1(_Arg0 a0) { /*return new typename _Ty(a0);*/NSOBJECTALLOCATOR(_Ty, _Ty(a0)); }
 	template<typename _Ty, typename _Arg0, typename _Arg1>
 	static _Ty* allocT2(_Arg0 a0, _Arg1 a1) { /*return new typename _Ty(a0, a1);*/NSOBJECTALLOCATOR2(_Ty, a0, a1); }
+	template<typename _Ty>
+	static __autoreleasing<_Ty> allocAndAutoreleasingT();
+	template<typename _Ty, typename _Arg0>
+	static __autoreleasing<_Ty> allocAndAutoreleasingT1(_Arg0 a0);
+	template<typename _Ty, typename _Arg0, typename _Arg1>
+	static __autoreleasing<_Ty> allocAndAutoreleasingT2(_Arg0 a0, _Arg1 a1);
 protected:
 	NS_EXTERN NSObject();
 protected:
@@ -137,6 +144,12 @@ protected:
 	{
 
 	}
+	template <class T>
+	__strong_obj(NSObject* obj, /**__unused*/ __autoreleasing<T>*)
+		: _obj(obj)
+	{
+
+	}
 public:
 	bool operator == (NSObject* other) const
 	{
@@ -198,6 +211,8 @@ public:
 
 	}
 	__strong(__weak<typename T>&);
+	__strong(__autoreleasing<typename T>&);
+	__strong(const __autoreleasing<typename T>&);
 	__strong& operator = (T* obj)
 	{
 		_obj->release();
@@ -211,6 +226,7 @@ public:
 		return *this;
 	}
 	__strong& operator = (__weak<typename T>&);
+	__strong& operator = (__autoreleasing<typename T>&);
 
 	T* operator -> ()
 	{
@@ -221,6 +237,55 @@ public:
 		return NULL != _obj && nil != _obj;
 	}
 	friend class __weak<typename T>;
+};
+
+template<class T>
+class __autoreleasing : public __strong_obj
+{
+public:
+	~__autoreleasing()
+	{
+		HELPER_ASSERT_NSOBJECT(T);
+	}
+	__autoreleasing() : __strong_obj()
+	{
+
+	}
+	__autoreleasing(T* obj)
+		: __strong_obj(reinterpret_cast<NSObject*>(obj), this)
+	{
+
+	}
+	__autoreleasing& operator = (T* obj)
+	{
+		_obj->release();
+		_obj = obj;
+		return *this;
+	}
+	T* operator -> ()
+	{
+		return reinterpret_cast<T*>(_obj);
+	}
+	operator bool()
+	{
+		return NULL != _obj && nil != _obj;
+	}
+	friend class __strong<typename T>;
+	friend class NSObject;
+private:
+	__autoreleasing(__autoreleasing& other)
+	{
+		_obj = other._obj;
+		other._obj = nil;
+	}
+	__autoreleasing(const __autoreleasing&);
+	__autoreleasing(__strong<typename T>& other);
+	__autoreleasing(const __strong<typename T>& other);
+	__autoreleasing(__weak<typename T>&);
+	__autoreleasing& operator = (__strong<typename T>& other);
+	__autoreleasing& operator = (__weak<typename T>&);
+	void operator delete(void*);
+	void* operator new(size_t);
 };
 
 class __weak_obj
@@ -265,6 +330,11 @@ public:
 	{
 
 	}
+	__weak(__autoreleasing<typename T>& strong)
+		: __weak(reinterpret_cast<NSObject*>(strong._obj))
+	{
+
+	}
 	__weak& operator = (T* obj)
 	{
 		assign(reinterpret_cast<NSObject*>(obj));
@@ -276,6 +346,11 @@ public:
 		return *this;
 	}
 	__weak& operator = (__strong<typename T>& strong)
+	{
+		assign(reinterpret_cast<NSObject*>(strong._obj));
+		return *this;
+	}
+	__weak& operator = (__autoreleasing<typename T>& strong)
 	{
 		assign(reinterpret_cast<NSObject*>(strong._obj));
 		return *this;
@@ -293,11 +368,46 @@ __strong<T>::__strong(__weak<typename T>& weak)
 
 template<class T>
 inline
+__strong<T>::__strong(__autoreleasing<typename T>& other)
+	: __strong_obj(reinterpret_cast<NSObject*>(other._obj))
+{
+
+}
+
+template<class T>
+inline
+__strong<T>::__strong(const __autoreleasing<typename T>& other)
+	: __strong_obj(reinterpret_cast<NSObject*>(other._obj))
+{
+
+}
+
+template<class T>
+inline
 __strong<T>& __strong<T>::operator = (__weak<typename T>& weak)
 {
 	_obj->release();
 	_obj = weak.lock();
 	return *this;
 }
+
+template<class T>
+inline
+__strong<T>& __strong<T>::operator = (__autoreleasing<typename T>& other)
+{
+	_obj->release();
+	_obj = other._obj->retain();
+	return *this;
+}
+
+template<typename _Ty>
+inline
+__autoreleasing<_Ty> NSObject::allocAndAutoreleasingT() { return __autoreleasing<_Ty>(NSObject::allocT<_Ty>()); }
+template<typename _Ty, typename _Arg0>
+inline
+__autoreleasing<_Ty> NSObject::allocAndAutoreleasingT1(_Arg0 a0) { return __autoreleasing<_Ty>(NSObject::allocT1<_Ty>(a0)); }
+template<typename _Ty, typename _Arg0, typename _Arg1>
+inline
+__autoreleasing<_Ty> NSObject::allocAndAutoreleasingT2(_Arg0 a0, _Arg1 a1) { return __autoreleasing<_Ty>(NSObject::allocT2<_Ty>(a0, a1)); }
 
 #endif
