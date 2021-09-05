@@ -8,6 +8,15 @@ implementing as a template class. you should specified the template parameter to
 
 [`__autoreleasing`](__autorelease.md) keyword.
 
+### Difference
+**`__strong`** retain the NSObject which check-in and release the NSObject which check-out.
+
+**`__autoreleasing`** only release the NSObject which check-out.
+
+**`__weak`** would not retain or release the NSObject. you should check out the NSObject by the only way upgrading it from `__weak` to `__strong`.
+
+**`__autoreleasing`** vs **NSAutoReleasePool**.
+
 ### example
 ```c++
 
