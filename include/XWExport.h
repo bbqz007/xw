@@ -1,6 +1,6 @@
 /**
 MIT License
-Copyright (c) 2015 bbqz007 <https://github.com/bbqz007, http://www.cnblogs.com/bbqzsl>
+Copyright (c) 2015-2021 bbqz007 <https://github.com/bbqz007, http://www.cnblogs.com/bbqzsl>
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -39,8 +39,25 @@ public:
 	~CoreAnimationModule();
 	uintptr_t _reserved[4];
 };
+
 #ifndef BUILD_DLL
-__declspec(selectany) CoreAnimationModule ____CoreAnimationModule;
+#pragma comment(linker, "/include:??0CoreAnimationModule@@QAE@XZ")
+#pragma comment(linker, "/include:??1CoreAnimationModule@@QAE@XZ")
+//#pragma comment(linker, "/include:____CoreAnimationModule")
+
+///  error LNK2001: "class CoreAnimationModule ____CoreAnimationModule" 
+///  you should add "CoreAnimationModule ____CoreAnimationModule" into your main cpp source file.
+extern CoreAnimationModule ____CoreAnimationModule;
+///  this class help you if you forgot define the ____CoreAnimationModule in compiler time.
+class CoreAnimationModuleDetection
+{
+public:
+	CoreAnimationModuleDetection()
+	{
+		static int i_keep_selectany_avoid_optref = ____CoreAnimationModule._reserved[0];
+	}
+};
+__declspec(selectany) CoreAnimationModuleDetection ___CoreAnimationModuleDetection;
 #endif
 
 #endif // _XW_EXPORT__H_

@@ -782,4 +782,9 @@ CG_EXTERN void CGContextSetShouldSmoothFonts(CGContextRef context,
 CG_EXTERN void CGContextSetAllowsFontSmoothing(CGContextRef context,
   bool allowsFontSmoothing) CG_AVAILABLE_STARTING(__MAC_10_2, __IPHONE_2_0);
 #endif
+
+/** Policy functions **/
+CG_EXTERN void CGContextPolicyForceSpeed(CGContextRef context);
+CG_EXTERN void CGContextPolicyPreferSpeed(CGContextRef context);
+CG_EXTERN void CGContextPolicyDefault(CGContextRef context);
 #endif
