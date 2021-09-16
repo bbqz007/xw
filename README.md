@@ -92,6 +92,12 @@ CATextLayer
 1. implement as `NSDispatcher` which associate to HWND, and `dispatch_async()` to UI thread which the HWND belongs to.
 2. this `NSDispatcher` help you change `CALayer` in UI thread rather than a non UI thread.
 3. you should process `process_dispatch_on_message()` in the HWND's `WM_NS_DIPATCH_NOTIRY` wndporc.
+
+## performance
+1. `CGContextPolicyForceSpeed()`
+2. `CGContextPolicyPreferSpeed()`
+3. `CGContextPolicyDefault()`
+
 ## other associated demo
 ![img](https://github.com/bbqz007/stock-drawing-assistant-tool/blob/master/res/demo1.gif)
 
