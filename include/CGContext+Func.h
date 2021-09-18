@@ -786,5 +786,6 @@ CG_EXTERN void CGContextSetAllowsFontSmoothing(CGContextRef context,
 /** Policy functions **/
 CG_EXTERN void CGContextPolicyForceSpeed(CGContextRef context);
 CG_EXTERN void CGContextPolicyPreferSpeed(CGContextRef context);
+CG_EXTERN void CGContextPolicyBalance(CGContextRef context);
 CG_EXTERN void CGContextPolicyDefault(CGContextRef context);
 #endif
