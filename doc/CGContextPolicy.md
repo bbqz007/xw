@@ -14,7 +14,7 @@ when you stroke or fill, `CGContextPolicyForceSpeed()` help you to ignore any sm
 
 #
 
-* `CGContextPolicyBalance()`
+* CGContextPolicyBalance
 
 -----------------
 the `CGContextPolicyForceSpeed()`, `CGContextPolicyPreferSpeed()` and `CGContextPolicyDefault()` are manual policies.
