@@ -94,9 +94,11 @@ CATextLayer
 3. you should process `process_dispatch_on_message()` in the HWND's `WM_NS_DIPATCH_NOTIRY` wndporc.
 
 ## performance
+[CGContextPolicy](doc/CGContextPolicy.md)
 1. `CGContextPolicyForceSpeed()`
 2. `CGContextPolicyPreferSpeed()`
 3. `CGContextPolicyDefault()`
+4. `CGContextPolicyBalance()`
 
 ## other associated demo
 ![img](https://github.com/bbqz007/stock-drawing-assistant-tool/blob/master/res/demo1.gif)
