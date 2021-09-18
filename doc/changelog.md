@@ -6,6 +6,8 @@
 [CGContextPolicy](changelogs/changelog0914.md)
 ### 20210916
 [CoreAnimationModuleDetection](changelogs/changelog0916.md)
+### 20210918
+[CGContextPolicyBalance](changelogs/changelog0918.md)
 
 
 
