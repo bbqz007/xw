@@ -6,7 +6,7 @@ implementing as a template class. you should specified the template parameter to
 ### Associate
 [`__weak`](__weak.md) keyword.
 
-[`__autoreleasing`](__autorelease.md) keyword.
+[`__autoreleasing`](__autoreleasing.md) keyword.
 
 ### Difference
 **`__strong`** retain the NSObject which check-in and release the NSObject which check-out.
