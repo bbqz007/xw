@@ -71,6 +71,9 @@ CATipsPanelLayer::CATipsPanelLayer()
 	_textLayer4->set_borderWidth(0.f);
 	_textLayer4->setForegroundColor(CGColor(CGColor::MakeARGB(255, 23, 35, 45)));
 	addSublayer(_textLayer4);
+
+	self.set_backgroundColor(CGColor(kClearColor));
+	self.set_borderWidth(0.f);
 }
 
 void CATipsPanelLayer::drawInContext(CGContext* ctx)

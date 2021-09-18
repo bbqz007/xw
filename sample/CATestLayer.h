@@ -24,6 +24,14 @@ SOFTWARE.
 #include "CALayer.h"
 #include "CATextLayer.h"
 
+/// classes:
+///  CATestLayer
+///  CATestArcAnimaLayer : show a turning arc
+///  CATestBoardAnimaLayer : show a board within which two text layer animate.
+///  CATestShakeAnimaLayer : show a layer, which shake every 5 seconds.
+
+/// overwrite CALayer::applyAnimating();
+
 class CATestLayer : public CALayer
 {
 public:

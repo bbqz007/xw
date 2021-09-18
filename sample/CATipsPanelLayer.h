@@ -24,7 +24,14 @@ SOFTWARE.
 #include "CARootLayer.h"
 #include "CATextLayer.h"
 
-class CATipsPanelLayer : public CARootLayer
+/// classes
+///  CATipsPanelLayer : show four floating text.
+///    one text on the left-top.
+///    other three in the center.
+
+/// overwrite: virtual CALayer::applyAnimating();
+
+class CATipsPanelLayer : public CALayer
 {
 public:
 	virtual ~CATipsPanelLayer();
@@ -34,7 +41,7 @@ private:
 	virtual void applyAnimating();
 public:
 	typedef CATipsPanelLayer this_type;
-	typedef CARootLayer base;
+	typedef CALayer base;
 private:
 	CATextLayer* _textLayer1;
 	CATextLayer* _textLayer2;
