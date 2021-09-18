@@ -1,3 +1,4 @@
+#
 * CGContextPolicyForceSpeed
 * CGContextPolicyPreferSpeed
 * CGContextPolicyDefault
@@ -11,7 +12,7 @@ when you stroke or fill, `CGContextPolicyForceSpeed()` help you to ignore any sm
 
 `CGContextPolicyDefault()` is the original policy.
 
-
+#
 
 * `CGContextPolicyBalance()`
 
