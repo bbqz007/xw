@@ -14,6 +14,8 @@ you should use `static void CARootLayer::init(WTL::CAppModule*)` to init the Cor
 
 this mode you should not handle anything. otherwise you should handle many stuffs by hand.
 
+to avoid the `TrackPopupMenu()` from stealing your message loop, you should call `static BOOL CARootLayer::PreProcessMessageInWndProc(HWND, UINT, WPARAM, LPARAM)` in your attached window's wndproc at the most first.
+
 ### Win32 mode
 you should use `static void CARootLayer::initAgainstWTL()` to init the Core Animation Engine without WTL.
 
