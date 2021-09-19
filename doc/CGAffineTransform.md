@@ -12,3 +12,6 @@
 * CGAffineTransformEqualToTransform
 * CGPointApplyAffineTransform
 * CGSizeApplyAffineTransform
+
+### rotate
+unlike apple always rotate thing in clockwise, this sdk rotate thing in counter clockwise.
