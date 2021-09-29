@@ -22,7 +22,7 @@ thus, `NsDispatcher` is implemented to dispatch behives to the **ui thread** whi
 
 you should swith on the compiler option `/Zc:__cplusplus` to indicate wether your compiler support c++11 or not.
 
-a `HSDispatcher` should be created in the **ui thread**, otherwise it would throw and abort your program.
+a `NSDispatcher` should be created in the **ui thread**, otherwise it would throw and abort your program.
 
 ### Usage
 you can easily use `NSDispatcher` with `CARootLayer`.
