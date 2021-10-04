@@ -73,7 +73,7 @@ struct CGContextState
 #define CGCTXDERPRECATED
 #endif
 
-#define kCGContextCurrentVersion ((sizeof(CGContext) << 16) | 220)
+#define kCGContextCurrentVersion ((sizeof(CGContext) << 16) | 221)
 
 class CALayer;
 class CG_EXTERN CGContext : protected CGContextState
