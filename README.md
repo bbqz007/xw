@@ -18,7 +18,7 @@ frameworks.
 
 newest
 
-![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO.gif)
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO2.gif)
 
 -----------------------------------------------
 
@@ -99,6 +99,12 @@ CATextLayer
 2. `CGContextPolicyPreferSpeed()`
 3. `CGContextPolicyDefault()`
 4. `CGContextPolicyBalance()`
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_PERF.gif)
+
+## projects
+[https://github.com/bbqz007/KTL](https://github.com/bbqz007/KTL)
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_Load.gif)
+![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO.gif)
 
 ## other associated demo
 ![img](https://github.com/bbqz007/stock-drawing-assistant-tool/blob/master/res/demo1.gif)
@@ -106,9 +112,3 @@ CATextLayer
 [if you are behive a wall, click here](https://www.cnblogs.com/bbqzsl/p/13285949.html)
 
 https://github.com/bbqz007/stock-drawing-assistant-tool
-
---------------------------------------------------------
-
-![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_Load.gif)
-![img](https://github.com/bbqz007/KTL/blob/master/resources/GIF_KTL_LOGO.gif)
-https://github.com/bbqz007/KTL
