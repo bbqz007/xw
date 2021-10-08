@@ -24,11 +24,14 @@ SOFTWARE.
 
 #ifdef BUILD_DLL
 #define XWEXPORT __declspec(dllexport)
+#define XWEXPORT_DELEETE __declspec(dllexport, deprecated("function deleted"))
 #else
 #define XWEXPORT __declspec(dllimport)
+#define XWEXPORT_DELEETE __declspec(dllimport, deprecated("function deleted"))
 #endif
 
 #define NS_EXTERN XWEXPORT
+#define NS_EXTERN_DELEETE XWEXPORT_DELEETE
 #define CA_EXTERN XWEXPORT
 
 /// Z#20210902

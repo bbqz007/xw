@@ -73,6 +73,9 @@ protected:
 private:
 	NS_EXTERN void* operator new(size_t);
 	NS_EXTERN void drill();
+private:
+	NS_EXTERN_DELEETE NSObject(const NSObject&);
+	NS_EXTERN_DELEETE NSObject& operator=(const NSObject&);
 };
 
 //#define nilObject getNilObject()
@@ -288,7 +291,7 @@ private:
 	void* operator new(size_t);
 };
 
-class __weak_obj
+class NS_EXTERN __weak_obj
 {
 protected:
 	obj_class* _obj;
